@@ -17,7 +17,7 @@ spring:
 # mybatis配置
 mybatis-plus:
   # 配置别名需要扫描的包
-  type-aliases-package: cn.hellomyheart.kataba.entity
+  type-aliases-package: com.example.boss.entity
   # 引入映射文件
   mapper-locations: classpath:mapper/*.xml
   configuration:
@@ -27,5 +27,5 @@ mybatis-plus:
 
 
 #自定义配置
-kataba:
+boss:
   passkey: Ch5CX73J5pUlW+/sK11VDA==
