@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.example.boss.mapper")
-@EnableTransactionManagement
+@EnableTransactionManagement //事务总开关
 @ServletComponentScan
 public class BossApplication {
 
