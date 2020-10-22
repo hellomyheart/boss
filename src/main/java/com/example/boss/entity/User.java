@@ -18,7 +18,7 @@ import java.util.Date;
  * @date: 2020/10/21 上午8:33
  */
 @Data
-@TableName("t_user")
+@TableName("user")
 @NoArgsConstructor
 public class User implements Serializable {
 

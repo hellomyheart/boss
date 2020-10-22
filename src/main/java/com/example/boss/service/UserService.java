@@ -13,4 +13,7 @@ public interface UserService {
 
     //校验手机号
     ResponseResult checkPhone(String phone);
+
+    //校验用户名
+    ResponseResult checkNickName(String nickname);
 }

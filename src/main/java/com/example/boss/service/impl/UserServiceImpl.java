@@ -36,4 +36,22 @@ public class UserServiceImpl implements UserService {
         }
         return ResponseResult.fail();
     }
+
+    @Override
+    public ResponseResult checkNickName(String nickname) {
+        if (StrUtil.checkNoEmpty(nickname)) {
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("nickname",nickname);
+            if (mapper.selectOne(queryWrapper) != null) {
+                //存在-不可用
+                return ResponseResult.fail();
+            }else{
+                //不存在-可用
+                return ResponseResult.ok();
+            }
+        }
+        return ResponseResult.fail();
+    }
+
+
 }
