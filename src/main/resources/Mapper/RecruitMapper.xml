@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.boss.mapper.RecruitMapper">
+    <resultMap id="selectAll" type="com.example.boss.dto.RecruitAllDto">
+        <result column="c_name" property="cname"></result>
+        <result column="c_decription" property="cdecription"></result>
+        <result column="address" property="address"></result>
+        <result column="num" property="num"></result>
+        <result column="name" property="name"></result>
+        <result column="decription" property="decription"></result>
+        <result column="skill" property="skill"></result>
+        <result column="salary" property="salary"></result>
+    </resultMap>
+    <select id="selectAll" resultMap="selectAll">
+        SELECT c.c_name ,c.c_decription ,r.address,r.num ,p.name ,p.decription ,p.skill,p.salary FROM recruit  as r JOIN position  as p on r.p_id=p.id JOIN company  as c on p.c_id=c.id
+    </select>
+</mapper>

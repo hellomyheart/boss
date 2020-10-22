@@ -6,9 +6,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/db_boss?serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/mydb?serverTimezone=Asia/Shanghai
     username: root
-    password: 123456
+    password: gsll
     driver-class-name: com.mysql.cj.jdbc.Driver
     #使用阿里巴巴druid数据源，默认使用自带的
     type: com.alibaba.druid.pool.DruidDataSource
