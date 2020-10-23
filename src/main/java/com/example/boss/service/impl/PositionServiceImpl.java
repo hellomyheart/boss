@@ -40,7 +40,9 @@ public class PositionServiceImpl implements PositionService {
 
     @Override
     public ResponseResult delete(Integer id) {
-    return null;
+     positionMapper.delete(id);
+     return ResponseResult.ok();
+
     }
 
 

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.ResultSet;
+
 /**
  * @ProjectName: boss
  * @Author: 张尚斌
@@ -24,13 +26,19 @@ public class PositionController {
     @Autowired
     private PositionService positionService;
 
-    @PostMapping("add")
+    @PostMapping("/add")
     public ResponseResult add(@RequestBody PositionDto dto){
         return  positionService.addPosition(dto);
     }
 
-    @RequestMapping("update")
+    @RequestMapping("/update")
     public ResponseResult update(@RequestBody PositionUpdateDto positionUpdateDto){
         return positionService.update(positionUpdateDto);
+    }
+
+    @PostMapping("/delete")
+    public ResponseResult delete(Integer id){
+        return positionService.delete(id);
+
     }
 }
