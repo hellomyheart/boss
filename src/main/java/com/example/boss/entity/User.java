@@ -36,4 +36,13 @@ public class User implements Serializable {
     private Date createtime;
     @JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss")
     private Date updatetime;
+
+    public User(String phone, String email, String password, String nickname, int status, Date createtime) {
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+        this.status = status;
+        this.createtime = createtime;
+    }
 }
