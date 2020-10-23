@@ -1,7 +1,10 @@
 package com.example.boss.service.impl;
 
+import com.example.boss.dto.InterviewDto;
 import com.example.boss.dto.RecruitDto;
+import com.example.boss.entity.Interview;
 import com.example.boss.entity.Recruit;
+import com.example.boss.mapper.InterviewMapper;
 import com.example.boss.mapper.RecruitMapper;
 import com.example.boss.service.RecruitService;
 import com.example.boss.vo.ResponseResult;
@@ -15,6 +18,9 @@ public class RecruitServiceImpl implements RecruitService {
     @Autowired
     private RecruitMapper recruitMapper;
 
+    @Autowired
+    private InterviewMapper interviewMapper;
+
     @Override
     public ResponseResult sendResume(RecruitDto recruit) {
         Recruit recruit1 = new Recruit(recruit.getP_id(),recruit.getNum(),recruit.getAddress(),new Date(),new Date());
@@ -24,5 +30,14 @@ public class RecruitServiceImpl implements RecruitService {
             return ResponseResult.ok();
         }
         return ResponseResult.fail();
+    }
+
+    @Override
+    public ResponseResult invited(InterviewDto interviewDto) {
+        //TODO 获取HR和求职者ID
+        Interview interview = new Interview(1,1,interviewDto.getAddress(),interviewDto.getI_time(),interviewDto.getStatus());
+        interview.setId(0);
+        interviewMapper.updateById(interview);
+        return ResponseResult.ok();
     }
 }
