@@ -1,6 +1,7 @@
 package com.example.boss.service;
 
 import com.example.boss.dto.PositionDto;
+import com.example.boss.dto.PositionUpdateDto;
 import com.example.boss.entity.Position;
 import com.example.boss.vo.ResponseResult;
 
@@ -20,10 +21,10 @@ public interface PositionService {
 
     /**
      * 添加职位信息
-     * @param position
+     * @param positionUpdateDto
      * @return
      */
-    public ResponseResult update(Position position);
+    public ResponseResult update(PositionUpdateDto positionUpdateDto);
 
     /**
      * 删除职位信息

@@ -21,7 +21,7 @@ import java.util.Date;
 @Data
 @TableName("position")
 @NoArgsConstructor
-@AllArgsConstructor
+
 public class Position {
     @TableId(type = IdType.AUTO)
     private Integer id;
@@ -36,12 +36,34 @@ public class Position {
     @JsonFormat(pattern = "YYYY-MM-dd HH:mm:ss")
     private Date updateTime;
 
-    public Position(Integer cid, String name, String decription, String skill, String salary, Date createTime) {
+    public Position(Integer id, Integer cid, String name, String decription, String skill, String salary, Date createTime, Date updateTime) {
+        this.id = id;
         this.cid = cid;
         this.name = name;
         this.decription = decription;
         this.skill = skill;
         this.salary = salary;
         this.createTime = createTime;
+        this.updateTime = updateTime;
     }
+    public Position(Integer id, Integer cid, String name, String decription, String skill, String salary,  Date updateTime) {
+        this.id = id;
+        this.cid = cid;
+        this.name = name;
+        this.decription = decription;
+        this.skill = skill;
+        this.salary = salary;
+        this.updateTime = updateTime;
+    }
+    public Position( Integer cid, String name, String decription, String skill, String salary, Date createTime) {
+
+        this.cid = cid;
+        this.name = name;
+        this.decription = decription;
+        this.skill = skill;
+        this.salary = salary;
+        this.createTime = createTime;
+
+    }
+
 }
