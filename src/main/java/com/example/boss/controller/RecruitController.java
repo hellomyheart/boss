@@ -45,9 +45,25 @@ public class RecruitController {
 //        return recruitService.applyForCheck(u_id);
 //    }
 
-    @PostMapping("/modifyResume")
-    public ResponseResult modifyResume(Integer id,RecruitDto recruitDto){
-        return recruitService.modifyResume(id,recruitDto);
+    /**
+     * 修改招聘信息
+     * @param id 被修改找您信息的id
+     * @param recruitDto 前端传入的修改信息
+     * @return 返回修改的状态
+     */
+    @PostMapping("/modifyRecruit")
+    public ResponseResult modifyRecruit(Integer id,RecruitDto recruitDto){
+        return recruitService.modifyRecruit(id,recruitDto);
+    }
+
+    /**
+     * 删除招聘信息
+     * @param id 被删除招聘信息的id
+     * @return 返回删除的状态，成功返回ok,失败返回fail
+     */
+    @PostMapping("/deleteRecruit")
+    public ResponseResult deleteRecruit(Integer id){
+        return recruitService.deleteRecruit(id);
     }
 
 }

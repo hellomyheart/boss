@@ -42,11 +42,21 @@ public class RecruitServiceImpl implements RecruitService {
     }
 
     @Override
-    public ResponseResult modifyResume(Integer id,RecruitDto recruitDto) {
+    public ResponseResult modifyRecruit(Integer id,RecruitDto recruitDto) {
         Recruit recruit1 = new Recruit(id,recruitDto.getP_id(),recruitDto.getNum(),recruitDto.getAddress(),new Date());
         if(recruitMapper.updateById(recruit1) > 0){
             return ResponseResult.ok();
         }
         return ResponseResult.fail();
     }
+
+    @Override
+    public ResponseResult deleteRecruit(Integer id) {
+        if(recruitMapper.deleteById(id) > 0){
+            return ResponseResult.ok();
+        }
+        return ResponseResult.fail();
+    }
+
+
 }

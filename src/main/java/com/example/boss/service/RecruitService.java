@@ -10,5 +10,7 @@ public interface RecruitService {
 
     ResponseResult invited(InterviewDto interviewDto);
 
-    ResponseResult modifyResume(Integer id,RecruitDto recruitDto);
+    ResponseResult modifyRecruit(Integer id,RecruitDto recruitDto);
+
+    ResponseResult deleteRecruit(Integer id);
 }
