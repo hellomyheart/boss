@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Update;
  * @Description:
  */
 public interface InterviewMapper extends BaseMapper<Interview> {
-    @Update("update  interview  set status=2 where r_id=#{id}")
-    void updateSById(int id);
+    @Update("update  interview  set status=2 where r_id=1")
+    void updateSById(Interview interview);
 
 }

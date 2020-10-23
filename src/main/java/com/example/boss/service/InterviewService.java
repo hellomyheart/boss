@@ -10,5 +10,6 @@ import com.example.boss.vo.ResponseResult;
  * @Description:
  */
 public interface InterviewService {
-    ResponseResult update(int id);
+
+    Object update(Interview interview);
 }

@@ -19,11 +19,16 @@ public class InterviewServiceImpl implements InterviewService {
     private InterviewMapper dao;
 
 
+    /**
+     * 接受面试
+     * 登录完成后
+     * 根据登录用户id更改面试表
+     * @param interview
+     * @return
+     */
     @Override
-    public ResponseResult update(int id) {
-        //int a=1;
-       // id=a;
-        dao.updateSById(1);
+    public Object update(Interview interview) {
+        dao.updateSById(interview);
         return ResponseResult.ok();
     }
 }

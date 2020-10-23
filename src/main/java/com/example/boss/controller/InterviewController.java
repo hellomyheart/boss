@@ -26,7 +26,7 @@ public class InterviewController {
      * @return
      */
     @PutMapping("/update")
-    public ResponseResult update(int id){
-         return ResponseResult.ok(service.update(id));
+    public ResponseResult update(Interview interview){
+         return ResponseResult.ok(service.update(interview));
     }
 }
