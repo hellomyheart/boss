@@ -30,4 +30,11 @@ public class Recruit {
         this.createtime = createtime;
         this.updatetime = updatetime;
     }
+    public Recruit(Integer id,Integer p_id, Integer num, String address, Date updatetime) {
+        this.id = id;
+        this.p_id = p_id;
+        this.num = num;
+        this.address = address;
+        this.updatetime = updatetime;
+    }
 }

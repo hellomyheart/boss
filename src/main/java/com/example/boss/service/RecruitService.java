@@ -9,4 +9,6 @@ public interface RecruitService {
     ResponseResult sendResume(RecruitDto recruitDto);
 
     ResponseResult invited(InterviewDto interviewDto);
+
+    ResponseResult modifyResume(Integer id,RecruitDto recruitDto);
 }

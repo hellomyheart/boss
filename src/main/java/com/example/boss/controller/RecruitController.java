@@ -27,12 +27,27 @@ public class RecruitController {
     /**
      * 邀请面试
      * @param interviewDto 前端传入HR选择的面试信息
-     * @return
+     * @return 邀请状态，成功为ok
      */
     @PostMapping("/invited")
     public ResponseResult invited(InterviewDto interviewDto){
         return recruitService.invited(interviewDto);
     }
 
+    /**
+     * 申请查看应聘者简历
+     * @param u_id 被查看应聘者的简历
+     * @return 简历地址
+     */
+    //TODO 缺少相关条件
+//    @PostMapping("/applyForCheck")
+//    public ResponseResult applyForCheck(Integer u_id){
+//        return recruitService.applyForCheck(u_id);
+//    }
+
+    @PostMapping("/modifyResume")
+    public ResponseResult modifyResume(Integer id,RecruitDto recruitDto){
+        return recruitService.modifyResume(id,recruitDto);
+    }
 
 }

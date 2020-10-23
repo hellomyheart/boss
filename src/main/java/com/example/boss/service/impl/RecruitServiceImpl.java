@@ -40,4 +40,13 @@ public class RecruitServiceImpl implements RecruitService {
         interviewMapper.updateById(interview);
         return ResponseResult.ok();
     }
+
+    @Override
+    public ResponseResult modifyResume(Integer id,RecruitDto recruitDto) {
+        Recruit recruit1 = new Recruit(id,recruitDto.getP_id(),recruitDto.getNum(),recruitDto.getAddress(),new Date());
+        if(recruitMapper.updateById(recruit1) > 0){
+            return ResponseResult.ok();
+        }
+        return ResponseResult.fail();
+    }
 }
