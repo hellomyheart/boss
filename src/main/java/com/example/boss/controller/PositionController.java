@@ -5,6 +5,7 @@ import com.example.boss.entity.Position;
 import com.example.boss.service.PositionService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,9 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class PositionController {
     @Autowired
     private PositionService positionService;
-@RequestMapping("add")
+
+    @PostMapping("add")
     public ResponseResult add(@RequestBody PositionDto dto){
-        positionService.add(dto);
-        return  ResponseResult.ok(dto);
+        return  positionService.addPosition(dto);
     }
 }

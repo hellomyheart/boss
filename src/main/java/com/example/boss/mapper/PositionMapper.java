@@ -3,6 +3,9 @@ package com.example.boss.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.boss.dto.PositionDto;
 import com.example.boss.entity.Position;
+import com.example.boss.vo.ResponseResult;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Update;
 
 /**
  * @ProjectName: boss
@@ -11,6 +14,13 @@ import com.example.boss.entity.Position;
  * @Description:
  */
 public interface PositionMapper extends BaseMapper<Position> {
+    /**
+     * 添加职位
+     * @param position
+     * @return
+     */
+    @Insert("insert into position (c_id,name,decription,skill,salary,createtime) values (#{cid},#{name},#{decription},#{skill},#{salary},#{createTime})")
+    int add(Position  position);
 
-    int update(PositionDto dto);
+
 }

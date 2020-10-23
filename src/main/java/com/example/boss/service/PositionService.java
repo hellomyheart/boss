@@ -2,6 +2,7 @@ package com.example.boss.service;
 
 import com.example.boss.dto.PositionDto;
 import com.example.boss.entity.Position;
+import com.example.boss.vo.ResponseResult;
 
 /**
  * @ProjectName: boss
@@ -13,19 +14,23 @@ public interface PositionService {
     /**
      * 添加职位信息
      * @param dto
+     * @return
      */
-    public void add(PositionDto dto);
+    ResponseResult addPosition(PositionDto dto);
 
     /**
-     * 修改职位信息
+     * 添加职位信息
      * @param position
+     * @return
      */
-    public void update(Position position);
+    public ResponseResult update(Position position);
 
     /**
      * 删除职位信息
      * @param id
+     * @return
      */
-    public void delete(Integer id);
+    public ResponseResult delete(Integer id);
+
 
 }
