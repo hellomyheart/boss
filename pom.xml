@@ -105,6 +105,12 @@
             <artifactId>json</artifactId>
             <version>20200518</version>
         </dependency>
+        <!--  pageHelper插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>5.1.4</version>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

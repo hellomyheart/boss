@@ -13,4 +13,7 @@ public interface RecruitService {
     ResponseResult modifyRecruit(Integer id,RecruitDto recruitDto);
 
     ResponseResult deleteRecruit(Integer id);
+
+    ResponseResult selectAllRecruitByCompany(Integer page,Integer limit,Integer id);
+
 }

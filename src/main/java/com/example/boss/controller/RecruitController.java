@@ -66,4 +66,14 @@ public class RecruitController {
         return recruitService.deleteRecruit(id);
     }
 
+    /**
+     * 查询公司的所发布的所有招聘信息
+     * @param id 被查询的公司id
+     * @return 查询结果
+     */
+    @PostMapping("/selectAllRecruitByCompany")
+    public ResponseResult selectAllRecruitByCompany(Integer page,Integer limit,Integer id){
+        return recruitService.selectAllRecruitByCompany(page,limit,id);
+    }
+
 }

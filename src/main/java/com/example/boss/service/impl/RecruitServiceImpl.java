@@ -1,5 +1,6 @@
 package com.example.boss.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.boss.dto.InterviewDto;
 import com.example.boss.dto.RecruitDto;
 import com.example.boss.entity.Interview;
@@ -8,10 +9,12 @@ import com.example.boss.mapper.InterviewMapper;
 import com.example.boss.mapper.RecruitMapper;
 import com.example.boss.service.RecruitService;
 import com.example.boss.vo.ResponseResult;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class RecruitServiceImpl implements RecruitService {
@@ -56,6 +59,13 @@ public class RecruitServiceImpl implements RecruitService {
             return ResponseResult.ok();
         }
         return ResponseResult.fail();
+    }
+
+    @Override
+    public ResponseResult selectAllRecruitByCompany(Integer page,Integer limit,Integer id) {
+        PageHelper.startPage(page,limit);
+        List<Recruit> list = recruitMapper.selectAllRecruitByCompany(id);
+        return ResponseResult.ok(list);
     }
 
 
