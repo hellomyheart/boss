@@ -4,13 +4,17 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.api.R;
 import com.example.boss.config.RedisKeyConfig;
 import com.example.boss.dto.UserDto;
+import com.example.boss.dto.UserLoginDto;
 import com.example.boss.entity.User;
 import com.example.boss.mapper.UserMapper;
 import com.example.boss.service.UserService;
 import com.example.boss.third.JedisUtil;
+import com.example.boss.third.JwtUtil;
 import com.example.boss.util.EncryptUtil;
 import com.example.boss.util.StrUtil;
 import com.example.boss.vo.ResponseResult;
+import com.google.gson.JsonObject;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -78,6 +82,26 @@ public class UserServiceImpl implements UserService {
                 mapper.insert(u2);
             }
             return ResponseResult.ok();
+        }
+        return ResponseResult.fail();
+    }
+
+    @Override
+    public ResponseResult login(UserLoginDto loginDto) {
+        //校验
+        User user = mapper.selectByName(loginDto.getName());
+        if (user != null) {
+            //比较密码  密文
+            if (EncryptUtil.aesenc(pk,loginDto.getPassword()).equals(user.getPassword())){
+                //密码一致
+                //生成令牌
+                String token = JwtUtil.createToken(user.getPhone());
+                //存储令牌
+                //记录令牌 对应的用户
+                JedisUtil.getInstance().STRINGS.setEx(RedisKeyConfig.LOGIN_TOKEN + token , RedisKeyConfig.LOGIN_TIME , new JSONObject(user).toString());
+                //返回结果
+                return ResponseResult.ok(token);
+            }
         }
         return ResponseResult.fail();
     }
