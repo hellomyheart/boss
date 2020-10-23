@@ -69,9 +69,10 @@ public class UserServiceImpl implements UserService {
         //校验是否可用
         User user=mapper.selectByNamePhone(dto.getNickname(),dto.getPhone());
         if(user==null) {
-            //密码 密文 AES
-            dto.setPassword(EncryptUtil.aesenc(pk, dto.getPassword()));
-            if (dto.getMsgCode().equals(JedisUtil.getInstance().STRINGS.get(RedisKeyConfig.SMS_RCODE))) {
+            //验证码比对
+            if (dto.getMsgCode().equals(JedisUtil.getInstance().STRINGS.get(RedisKeyConfig.SMS_RCODE + dto.getPhone()))) {
+                //密码 密文 AES
+                dto.setPassword(EncryptUtil.aesenc(pk, dto.getPassword()));
                 //新增
                 User u2 = new User(dto.getPhone(), dto.getNickname(), dto.getPassword(), dto.getEmail(), 1, new Date());
                 mapper.insert(u2);
