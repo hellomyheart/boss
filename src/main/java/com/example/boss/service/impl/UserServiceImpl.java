@@ -12,6 +12,7 @@ import com.example.boss.third.JedisUtil;
 import com.example.boss.third.JwtUtil;
 import com.example.boss.util.EncryptUtil;
 import com.example.boss.util.StrUtil;
+import com.example.boss.util.TokenUtil;
 import com.example.boss.vo.ResponseResult;
 import com.google.gson.JsonObject;
 import org.json.JSONObject;
@@ -104,6 +105,13 @@ public class UserServiceImpl implements UserService {
             }
         }
         return ResponseResult.fail();
+    }
+
+    @Override
+    public ResponseResult find(String token,UserDto dto) {
+        int uid = TokenUtil.getUid(token);
+
+        return null;
     }
 
 
