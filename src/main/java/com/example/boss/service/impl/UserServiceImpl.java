@@ -98,9 +98,12 @@ public class UserServiceImpl implements UserService {
                 //密码一致
                 //生成令牌
                 String token = JwtUtil.createToken(user.getPhone());
+                System.out.println("token = " + token);
                 //存储令牌
                 //记录令牌 对应的用户
                 JedisUtil.getInstance().STRINGS.setEx(RedisKeyConfig.LOGIN_TOKEN + token , RedisKeyConfig.LOGIN_TIME , new JSONObject(user).toString());
+                //记录登录过的账号信息
+                JedisUtil.getInstance().STRINGS.setEx(RedisKeyConfig.LOGIN_USER+user.getId(),RedisKeyConfig.LOGIN_TIME,token);
                 //返回结果
                 return ResponseResult.ok(token);
             }
