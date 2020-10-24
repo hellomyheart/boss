@@ -61,4 +61,8 @@ public class UserController {
         return service.find(email, code, newPassword);
     }
 
+    @GetMapping("updatePwd")
+    public ResponseResult updatePwd(String token, String code, String email, String password){
+        return service.update(token, code, email, password);
+    }
 }

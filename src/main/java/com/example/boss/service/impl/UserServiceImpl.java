@@ -128,4 +128,15 @@ public class UserServiceImpl implements UserService {
         return ResponseResult.fail();
     }
 
+    @Override
+    public ResponseResult update(String token, String code, String email, String password) {
+        int uid = TokenUtil.getUid(token);
+        if (code.equals(JedisUtil.getInstance().STRINGS.get(RedisKeyConfig.SMS_RCODE + email))){
+            String newPassword = EncryptUtil.aesenc(pk,password);
+            mapper.updatePwd(uid,newPassword);
+            return ResponseResult.ok();
+        }
+        return ResponseResult.fail();
+    }
+
 }
