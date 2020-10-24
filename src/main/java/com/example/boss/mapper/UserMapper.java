@@ -3,10 +3,8 @@ package com.example.boss.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.boss.dto.UserDto;
 import com.example.boss.entity.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.ResultType;
-import org.apache.ibatis.annotations.Select;
+import com.example.boss.vo.ResponseResult;
+import org.apache.ibatis.annotations.*;
 
 /**
  * @description
@@ -24,4 +22,11 @@ public interface UserMapper extends BaseMapper<User> {
     @Select("select * from user where nickname=#{n} or phone =#{n}")
     @ResultType(User.class)
     User selectByName(String n);
+
+    @Select("select * from user where email = #{email}")
+    @ResultType(User.class)
+    User selectByEmail(String email);
+
+    @Update("update user set password = #{password} where email = #{email} ")
+    int findPwd(String email,String password);
 }

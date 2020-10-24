@@ -56,4 +56,9 @@ public class UserController {
         return service.login(loginDto);
     }
 
+    @GetMapping("findPwd")
+    public ResponseResult findPwd(String email,String code ,String newPassword){
+        return service.find(email, code, newPassword);
+    }
+
 }

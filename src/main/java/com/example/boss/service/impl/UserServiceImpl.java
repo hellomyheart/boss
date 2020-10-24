@@ -15,6 +15,7 @@ import com.example.boss.util.StrUtil;
 import com.example.boss.util.TokenUtil;
 import com.example.boss.vo.ResponseResult;
 import com.google.gson.JsonObject;
+import jdk.nashorn.internal.parser.Token;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -108,11 +109,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ResponseResult find(String token,UserDto dto) {
-        int uid = TokenUtil.getUid(token);
+    public ResponseResult find(String email,String code,String password) {
+        //校验
+        User user = mapper.selectByEmail(email);
+        if (user != null) {
+            //比对
+            if (code.equals(JedisUtil.getInstance().STRINGS.get(RedisKeyConfig.SMS_RCODE + email))) {
+                String newPassword = EncryptUtil.aesenc(pk,password);
+                mapper.findPwd(email, newPassword);
+                return ResponseResult.ok();
+            }
+            return ResponseResult.fail();
+        }
 
-        return null;
+        return ResponseResult.fail();
     }
-
 
 }

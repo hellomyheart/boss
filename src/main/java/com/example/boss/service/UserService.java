@@ -27,5 +27,5 @@ public interface UserService {
     ResponseResult login(UserLoginDto loginDto);
 
     //找回密码
-    ResponseResult find(String token,UserDto dto);
+    ResponseResult find(String email,String code,String password);
 }
