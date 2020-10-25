@@ -42,12 +42,13 @@ public class Company {
         this.createtime = createtime;
     }
 
-    public Company(int id, int uid, String name, String address, String decription, Date updatetime) {
+    public Company(int id, int uid, String name, String address, String decription, int status, Date updatetime) {
         this.id = id;
         this.uid = uid;
         this.name = name;
         this.address = address;
         this.decription = decription;
+        this.status = status;
         this.updatetime = updatetime;
     }
 }

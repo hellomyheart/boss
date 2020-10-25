@@ -35,7 +35,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public ResponseResult update(Integer id, CompanyUpdateDto dto) {
-        Company company = new Company(id, dto.getUid(), dto.getAddress(), dto.getDecription(), dto.getName(), new Date());
+        Company company = new Company(id, dto.getUid(), dto.getAddress(), dto.getDecription(), dto.getName(),1, new Date());
         if (mapper.updateById(company)>0) {
             return ResponseResult.ok();
         }
