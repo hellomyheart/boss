@@ -2,6 +2,7 @@ package com.example.boss.service;
 
 import com.example.boss.dto.UserDto;
 import com.example.boss.dto.UserLoginDto;
+import com.example.boss.dto.UserUpdateDto;
 import com.example.boss.entity.User;
 import com.example.boss.vo.ResponseResult;
 
@@ -32,4 +33,7 @@ public interface UserService {
 
     //修改密码
     ResponseResult update(String token,String code,String email,String password);
+
+    //修改个人信息
+    ResponseResult modify(Integer id, UserUpdateDto dto);
 }

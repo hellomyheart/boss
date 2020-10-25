@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.api.R;
 import com.example.boss.config.RedisKeyConfig;
 import com.example.boss.dto.UserDto;
 import com.example.boss.dto.UserLoginDto;
+import com.example.boss.dto.UserUpdateDto;
 import com.example.boss.entity.User;
 import com.example.boss.mapper.UserMapper;
 import com.example.boss.service.UserService;
@@ -134,6 +135,15 @@ public class UserServiceImpl implements UserService {
         if (code.equals(JedisUtil.getInstance().STRINGS.get(RedisKeyConfig.SMS_RCODE + email))){
             String newPassword = EncryptUtil.aesenc(pk,password);
             mapper.updatePwd(uid,newPassword);
+            return ResponseResult.ok();
+        }
+        return ResponseResult.fail();
+    }
+
+    @Override
+    public ResponseResult modify(Integer id, UserUpdateDto dto) {
+        User user = new User(id, dto.getPhone(), dto.getEmail(), dto.getNickname(), dto.getIcon(), 1, new Date());
+        if (mapper.updateById(user)>0) {
             return ResponseResult.ok();
         }
         return ResponseResult.fail();

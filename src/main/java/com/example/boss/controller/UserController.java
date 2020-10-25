@@ -2,6 +2,7 @@ package com.example.boss.controller;
 
 import com.example.boss.dto.UserDto;
 import com.example.boss.dto.UserLoginDto;
+import com.example.boss.dto.UserUpdateDto;
 import com.example.boss.service.UserService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,5 +65,10 @@ public class UserController {
     @GetMapping("updatePwd")
     public ResponseResult updatePwd(String token, String code, String email, String password){
         return service.update(token, code, email, password);
+    }
+
+    @PostMapping("modify")
+    public ResponseResult modify(Integer id, UserUpdateDto dto){
+        return service.modify(id, dto);
     }
 }

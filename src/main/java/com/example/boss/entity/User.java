@@ -45,4 +45,14 @@ public class User implements Serializable {
         this.status = status;
         this.createtime = createtime;
     }
+
+    public User(int id, String phone, String email, String nickname, String icon, int status, Date updatetime) {
+        this.id = id;
+        this.phone = phone;
+        this.email = email;
+        this.nickname = nickname;
+        this.icon = icon;
+        this.status = status;
+        this.updatetime = updatetime;
+    }
 }
