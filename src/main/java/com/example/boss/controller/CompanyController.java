@@ -49,8 +49,18 @@ public class CompanyController {
      * @param id
      * @return
      */
-    @PostMapping("detail.do")
+    @PostMapping("detail")
     public ResponseResult detail(int id){
         return service.query(id);
+    }
+
+    /**
+     * 删除公司
+     * @param id
+     * @return
+     */
+    @PostMapping("delete")
+    public ResponseResult delete(Integer id){
+        return service.delete(id);
     }
 }

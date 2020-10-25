@@ -47,5 +47,13 @@ public class CompanyServiceImpl implements CompanyService {
         return ResponseResult.ok(mapper.selectById(id));
     }
 
+    @Override
+    public ResponseResult delete(Integer id) {
+        Company company = new Company(id, 2);
+        if (mapper.updateById(company)>0) {
+            return ResponseResult.ok();
+        }
+        return ResponseResult.fail();
+    }
 
 }

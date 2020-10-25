@@ -18,4 +18,6 @@ public interface CompanyService {
 
     ResponseResult query(int id);
 
+    ResponseResult delete(Integer id);
+
 }

@@ -51,4 +51,9 @@ public class Company {
         this.status = status;
         this.updatetime = updatetime;
     }
+
+    public Company(int id, int status) {
+        this.id = id;
+        this.status = status;
+    }
 }
