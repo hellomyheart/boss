@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.boss.dto.PositionDto;
 import com.example.boss.entity.Position;
 import com.example.boss.vo.ResponseResult;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Update;
 
@@ -22,5 +23,13 @@ public interface PositionMapper extends BaseMapper<Position> {
     @Insert("insert into position (c_id,name,decription,skill,salary,createtime) values (#{cid},#{name},#{decription},#{skill},#{salary},#{createTime})")
     int add(Position  position);
 
-
+    /**
+     * 修改职位信息
+     * @param position
+     * @return
+     */
+    @Update("update position set c_id = #{cid} ,name =#{name} ,decription =#{decription} ,skill=#{skill},salary=#{salary} ,updatetime=#{updateTime} where id=#{id} ")
+    int update(Position position);
+    @Delete("delete from position where id =#{id}")
+    int delete(Integer id);
 }
