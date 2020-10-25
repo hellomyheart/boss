@@ -27,7 +27,7 @@ public class CompanyServiceImpl implements CompanyService {
     public ResponseResult add(String token, CompanyDto dto) {
         int uid = TokenUtil.getUid(token);
         Company company = new Company(uid, dto.getName(), dto.getAddress(), dto.getDecription(), 1, new Date());
-        mapper.add(company);
+        mapper.insert(company);
         return ResponseResult.ok();
     }
 }

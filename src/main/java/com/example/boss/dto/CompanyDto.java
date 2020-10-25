@@ -19,5 +19,4 @@ public class CompanyDto {
     private String name;
     private String address;
     private String decription;
-    private int status;
 }

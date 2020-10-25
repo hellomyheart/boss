@@ -1,6 +1,7 @@
 package com.example.boss.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -21,6 +22,7 @@ import java.util.Date;
 public class Company {
     @TableId(type = IdType.AUTO)
     private int id;
+    @TableField("u_id")
     private int uid;
     private String name;
     private String address;
