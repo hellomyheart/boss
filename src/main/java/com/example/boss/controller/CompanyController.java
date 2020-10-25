@@ -6,10 +6,7 @@ import com.example.boss.dto.CompanyUpdateDto;
 import com.example.boss.service.CompanyService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -45,5 +42,15 @@ public class CompanyController {
     @PostMapping("update")
     public ResponseResult update(Integer id, CompanyUpdateDto dto){
         return service.update(id, dto);
+    }
+
+    /**
+     * 浏览公司信息
+     * @param id
+     * @return
+     */
+    @PostMapping("detail.do")
+    public ResponseResult detail(int id){
+        return service.query(id);
     }
 }

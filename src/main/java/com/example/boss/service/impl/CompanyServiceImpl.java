@@ -1,5 +1,6 @@
 package com.example.boss.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.boss.dto.CompanyDto;
 import com.example.boss.dto.CompanyUpdateDto;
 import com.example.boss.entity.Company;
@@ -39,6 +40,11 @@ public class CompanyServiceImpl implements CompanyService {
             return ResponseResult.ok();
         }
         return ResponseResult.fail();
+    }
+
+    @Override
+    public ResponseResult query(int id) {
+        return ResponseResult.ok(mapper.selectById(id));
     }
 
 

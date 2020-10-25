@@ -16,4 +16,6 @@ public interface CompanyService {
 
     ResponseResult update(Integer id, CompanyUpdateDto dto);
 
+    ResponseResult query(int id);
+
 }
