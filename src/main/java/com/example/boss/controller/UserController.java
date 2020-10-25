@@ -52,21 +52,47 @@ public class UserController {
         return service.register(dto);
     }
 
+    /**
+     * 登录
+     * @param loginDto
+     * @return
+     */
     @PostMapping("login")
     public ResponseResult login(@RequestBody UserLoginDto loginDto){
         return service.login(loginDto);
     }
 
+    /**
+     * 找回密码
+     * @param email
+     * @param code
+     * @param newPassword
+     * @return
+     */
     @GetMapping("findPwd")
     public ResponseResult findPwd(String email,String code ,String newPassword){
         return service.find(email, code, newPassword);
     }
 
+    /**
+     * 修改密码
+     * @param token
+     * @param code
+     * @param email
+     * @param password
+     * @return
+     */
     @GetMapping("updatePwd")
     public ResponseResult updatePwd(String token, String code, String email, String password){
         return service.update(token, code, email, password);
     }
 
+    /**
+     * 修改个人信息
+     * @param id
+     * @param dto
+     * @return
+     */
     @PostMapping("modify")
     public ResponseResult modify(Integer id, UserUpdateDto dto){
         return service.modify(id, dto);
