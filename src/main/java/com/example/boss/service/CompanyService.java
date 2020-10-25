@@ -1,6 +1,7 @@
 package com.example.boss.service;
 
 import com.example.boss.dto.CompanyDto;
+import com.example.boss.dto.CompanyUpdateDto;
 import com.example.boss.vo.ResponseResult;
 
 /**
@@ -12,5 +13,7 @@ import com.example.boss.vo.ResponseResult;
 public interface CompanyService {
 
     ResponseResult add(String token, CompanyDto dto);
+
+    ResponseResult update(Integer id, CompanyUpdateDto dto);
 
 }

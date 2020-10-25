@@ -2,6 +2,7 @@ package com.example.boss.controller;
 
 import com.example.boss.config.SystemConfig;
 import com.example.boss.dto.CompanyDto;
+import com.example.boss.dto.CompanyUpdateDto;
 import com.example.boss.service.CompanyService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,16 @@ public class CompanyController {
     @PostMapping("add")
     public ResponseResult add(String token, CompanyDto dto){
         return service.add(token,dto);
+    }
+
+    /**
+     * 修改公司信息
+     * @param id
+     * @param dto
+     * @return
+     */
+    @PostMapping("update")
+    public ResponseResult update(Integer id, CompanyUpdateDto dto){
+        return service.update(id, dto);
     }
 }

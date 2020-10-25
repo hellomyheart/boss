@@ -1,6 +1,7 @@
 package com.example.boss.service.impl;
 
 import com.example.boss.dto.CompanyDto;
+import com.example.boss.dto.CompanyUpdateDto;
 import com.example.boss.entity.Company;
 import com.example.boss.mapper.CompanyMapper;
 import com.example.boss.service.CompanyService;
@@ -30,4 +31,15 @@ public class CompanyServiceImpl implements CompanyService {
         mapper.insert(company);
         return ResponseResult.ok();
     }
+
+    @Override
+    public ResponseResult update(Integer id, CompanyUpdateDto dto) {
+        Company company = new Company(id, dto.getUid(), dto.getAddress(), dto.getDecription(), dto.getName(), new Date());
+        if (mapper.updateById(company)>0) {
+            return ResponseResult.ok();
+        }
+        return ResponseResult.fail();
+    }
+
+
 }

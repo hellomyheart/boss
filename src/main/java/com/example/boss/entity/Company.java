@@ -41,4 +41,13 @@ public class Company {
         this.status = status;
         this.createtime = createtime;
     }
+
+    public Company(int id, int uid, String name, String address, String decription, Date updatetime) {
+        this.id = id;
+        this.uid = uid;
+        this.name = name;
+        this.address = address;
+        this.decription = decription;
+        this.updatetime = updatetime;
+    }
 }
