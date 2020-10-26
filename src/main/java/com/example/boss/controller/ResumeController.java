@@ -20,9 +20,16 @@ public class ResumeController {
     @Autowired
     private ResumeService service;
 
-    @PostMapping("/add")
-    public ResponseResult add(Resume resume){
 
-        return service.add(resume);
+    /**
+     * 上传简历
+     * @param token
+     * @param resume
+     * @return
+     */
+    @PostMapping("/add")
+    public ResponseResult add(String token, Resume resume){
+
+        return service.add(token,resume);
     }
 }

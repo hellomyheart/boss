@@ -12,5 +12,5 @@ import javax.servlet.http.HttpServletRequest;
  * @Description:
  */
 public interface ResumeService {
-    ResponseResult add(Resume resume);
+    ResponseResult add(String token, Resume resume);
 }

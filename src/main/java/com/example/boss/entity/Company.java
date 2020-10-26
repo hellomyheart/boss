@@ -42,4 +42,13 @@ public class Company {
         this.cdecription = cdecription;
         this.status = status;
     }
+
+    public Company(int uid, String name, String address, String decription, int i, Date date) {
+    }
+
+    public Company(Integer id, int uid, String address, String decription, String name, int i, Date date) {
+    }
+
+    public Company(Integer id, int i) {
+    }
 }
