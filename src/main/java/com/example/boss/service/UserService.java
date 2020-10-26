@@ -1,5 +1,11 @@
 package com.example.boss.service;
 
+import com.example.boss.dto.UserDto;
+import com.example.boss.dto.UserLoginDto;
+import com.example.boss.dto.UserUpdateDto;
+import com.example.boss.entity.User;
+import com.example.boss.vo.ResponseResult;
+
 /**
  * @description
  * @className: UserService
@@ -8,4 +14,26 @@ package com.example.boss.service;
  * @date: 2020/10/21 上午8:54
  */
 public interface UserService {
+
+    //校验手机号
+    ResponseResult checkPhone(String phone);
+
+    //校验用户名
+    ResponseResult checkNickName(String nickname);
+
+    //注册
+    ResponseResult register(UserDto dto);
+
+    //登录
+    ResponseResult login(UserLoginDto loginDto);
+
+    //找回密码
+    ResponseResult find(String email,String code,String password);
+
+
+    //修改密码
+    ResponseResult update(String token,String code,String email,String password);
+
+    //修改个人信息
+    ResponseResult modify(Integer id, UserUpdateDto dto);
 }

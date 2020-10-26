@@ -14,4 +14,10 @@ import java.io.Serializable;
 @Data
 public class UserDto implements Serializable {
     private static final long serialVersionUID = 1040871397516296025L;
+
+    private String phone;
+    private String email;
+    private String msgCode;
+    private String password;
+    private String nickname;
 }
