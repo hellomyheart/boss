@@ -1,7 +1,6 @@
 package com.example.boss.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.api.R;
 import com.example.boss.config.RedisKeyConfig;
 import com.example.boss.dto.UserDto;
 import com.example.boss.dto.UserLoginDto;
@@ -15,8 +14,6 @@ import com.example.boss.util.EncryptUtil;
 import com.example.boss.util.StrUtil;
 import com.example.boss.util.TokenUtil;
 import com.example.boss.vo.ResponseResult;
-import com.google.gson.JsonObject;
-import jdk.nashorn.internal.parser.Token;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

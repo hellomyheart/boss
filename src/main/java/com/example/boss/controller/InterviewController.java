@@ -25,8 +25,20 @@ public class InterviewController {
      * @param
      * @return
      */
-    @PutMapping("/update")
-    public ResponseResult update(Interview interview){
-         return ResponseResult.ok(service.update(interview));
+    @PutMapping("/updateYes")
+    public ResponseResult updateYes(String token){
+        service.updateYes(token);
+         return ResponseResult.ok();
+    }
+
+    /**
+     * 拒绝面试
+     * @param token
+     * @return
+     */
+    @PutMapping("/updateNo")
+    public ResponseResult updateNo(String token){
+        service.updateYes(token);
+        return ResponseResult.ok();
     }
 }

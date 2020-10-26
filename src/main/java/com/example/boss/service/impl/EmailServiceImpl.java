@@ -1,6 +1,5 @@
 package com.example.boss.service.impl;
 
-import com.baomidou.mybatisplus.extension.api.R;
 import com.example.boss.config.RedisKeyConfig;
 import com.example.boss.dto.EmailDto;
 import com.example.boss.service.EmailService;

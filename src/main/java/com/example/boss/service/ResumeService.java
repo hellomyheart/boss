@@ -1,5 +1,6 @@
 package com.example.boss.service;
 
+import com.example.boss.dto.ResumeDto;
 import com.example.boss.entity.Resume;
 import com.example.boss.vo.ResponseResult;
 
@@ -12,5 +13,5 @@ import javax.servlet.http.HttpServletRequest;
  * @Description:
  */
 public interface ResumeService {
-    ResponseResult add(String token, Resume resume);
+    ResponseResult add(String token, String address);
 }

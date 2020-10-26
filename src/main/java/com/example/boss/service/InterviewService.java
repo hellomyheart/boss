@@ -11,5 +11,17 @@ import com.example.boss.vo.ResponseResult;
  */
 public interface InterviewService {
 
-    Object update(Interview interview);
+    /**
+     * 接受面试/更改状态为2
+     * @param token
+     * @return
+     */
+    ResponseResult updateYes(String token);
+
+    /**
+     * 拒绝面试/更改状态为5
+     * @param token
+     * @return
+     */
+    ResponseResult updateNo(String token);
 }

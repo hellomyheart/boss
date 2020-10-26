@@ -1,5 +1,6 @@
 package com.example.boss.service.impl;
 
+import com.example.boss.dto.ResumeDto;
 import com.example.boss.entity.Resume;
 import com.example.boss.entity.User;
 import com.example.boss.mapper.ResumeMapper;
@@ -23,23 +24,21 @@ public class ResumeServiceImpl implements ResumeService {
     @Autowired
     private ResumeMapper dao;
 
-    @Autowired
-    private UserMapper userdao;
 
     /**
      * 上传简历
      * @param token
-     * @param resume
+     * @param
      * @return
      */
     @Override
-    public ResponseResult add(String token, Resume resume) {
+    public ResponseResult add(String token, String address) {
         //获取当前登录用户id
         int uid = TokenUtil.getUid(token);
         //实例化简历对象
-        Resume resume1 = new Resume(uid, resume.getAddress(), new Date());
+        ResumeDto resumeDto = new ResumeDto(uid, address, new Date());
         //插入简历
-        if (dao.insert(resume1)>0) {
+        if (dao.insertDto(resumeDto)>0) {
             return ResponseResult.ok();
         }
         return ResponseResult.fail();

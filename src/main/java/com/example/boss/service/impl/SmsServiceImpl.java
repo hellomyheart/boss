@@ -6,7 +6,6 @@ import com.example.boss.third.JedisUtil;
 import com.example.boss.third.SmsUtil;
 import com.example.boss.util.NumRandomUtil;
 import com.example.boss.vo.ResponseResult;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**

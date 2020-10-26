@@ -1,5 +1,6 @@
 package com.example.boss.controller;
 
+import com.example.boss.dto.ResumeDto;
 import com.example.boss.entity.Resume;
 import com.example.boss.service.ResumeService;
 import com.example.boss.vo.ResponseResult;
@@ -24,12 +25,12 @@ public class ResumeController {
     /**
      * 上传简历
      * @param token
-     * @param resume
+     * @param
      * @return
      */
     @PostMapping("/add")
-    public ResponseResult add(String token, Resume resume){
+    public ResponseResult add(String token, String address){
 
-        return service.add(token,resume);
+        return service.add(token,address);
     }
 }

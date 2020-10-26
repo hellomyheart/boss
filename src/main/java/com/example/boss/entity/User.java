@@ -34,4 +34,9 @@ public class User implements Serializable {
     private Date createtime;//创建时间
     private Date updatetime;//修改时间
 
+    public User(String phone, String nickname, String password, String email, int i, Date date) {
+    }
+
+    public User(Integer id, String phone, String email, String nickname, String icon, int i, Date date) {
+    }
 }
