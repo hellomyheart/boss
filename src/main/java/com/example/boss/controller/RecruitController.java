@@ -1,5 +1,6 @@
 package com.example.boss.controller;
 
+import com.example.boss.config.SystemConfig;
 import com.example.boss.dto.InterviewDto;
 import com.example.boss.dto.RecruitDto;
 import com.example.boss.service.RecruitService;
@@ -7,6 +8,8 @@ import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class RecruitController {
@@ -19,9 +22,10 @@ public class RecruitController {
      * @param recruitDto
      * @return
      */
+    //TODO 此处需要用到令牌，去拿redis中的用户信息
     @PostMapping("/sendResume")
-    public ResponseResult sendResume(RecruitDto recruitDto){
-        return recruitService.sendResume(recruitDto);
+    public ResponseResult sendResume(HttpServletRequest request,RecruitDto recruitDto){
+        return recruitService.sendResume(request.getHeader(SystemConfig.TOKEN_LOGIN),recruitDto);
     }
 
     /**
@@ -52,8 +56,8 @@ public class RecruitController {
      * @return 返回修改的状态
      */
     @PostMapping("/modifyRecruit")
-    public ResponseResult modifyRecruit(Integer id,RecruitDto recruitDto){
-        return recruitService.modifyRecruit(id,recruitDto);
+    public ResponseResult modifyRecruit(HttpServletRequest request,Integer id,RecruitDto recruitDto){
+        return recruitService.modifyRecruit(request.getHeader(SystemConfig.TOKEN_LOGIN),id,recruitDto);
     }
 
     /**
@@ -62,8 +66,8 @@ public class RecruitController {
      * @return 返回删除的状态，成功返回ok,失败返回fail
      */
     @PostMapping("/deleteRecruit")
-    public ResponseResult deleteRecruit(Integer id){
-        return recruitService.deleteRecruit(id);
+    public ResponseResult deleteRecruit(HttpServletRequest request,Integer id){
+        return recruitService.deleteRecruit(request.getHeader(SystemConfig.TOKEN_LOGIN),id);
     }
 
     /**

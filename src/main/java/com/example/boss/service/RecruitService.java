@@ -6,13 +6,13 @@ import com.example.boss.vo.ResponseResult;
 
 public interface RecruitService {
 
-    ResponseResult sendResume(RecruitDto recruitDto);
+    ResponseResult sendResume(String token,RecruitDto recruitDto);
 
     ResponseResult invited(InterviewDto interviewDto);
 
-    ResponseResult modifyRecruit(Integer id,RecruitDto recruitDto);
+    ResponseResult modifyRecruit(String token,Integer id,RecruitDto recruitDto);
 
-    ResponseResult deleteRecruit(Integer id);
+    ResponseResult deleteRecruit(String token,Integer id);
 
     ResponseResult selectAllRecruitByCompany(Integer page,Integer limit,Integer id);
 
