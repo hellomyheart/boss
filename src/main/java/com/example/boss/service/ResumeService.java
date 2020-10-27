@@ -13,5 +13,26 @@ import javax.servlet.http.HttpServletRequest;
  * @Description:
  */
 public interface ResumeService {
+    /**
+     * 上传简历
+     * @param token
+     * @param address
+     * @return
+     */
     ResponseResult add(String token, String address);
+
+    /**
+     * 查询简历
+     * @param token
+     * @return
+     */
+    ResponseResult select(String token);
+
+    /**
+     * 修改简历
+     * @param token
+     * @param address
+     * @return
+     */
+    ResponseResult update(String token,String address);
 }

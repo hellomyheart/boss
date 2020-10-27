@@ -43,4 +43,34 @@ public class ResumeServiceImpl implements ResumeService {
         }
         return ResponseResult.fail();
     }
+
+    /**
+     * 查询简历
+     * @param token
+     * @return
+     */
+    @Override
+    public ResponseResult select(String token) {
+        //获取id
+        int uid = TokenUtil.getUid(token);
+
+        return ResponseResult.ok(dao.selectById(uid));
+    }
+
+    /**
+     * 修改简历
+     * @param token
+     * @param address
+     * @return
+     */
+    @Override
+    public ResponseResult update(String token, String address) {
+        //获取id
+        int uid = TokenUtil.getUid(token);
+        //更改面试地址
+        if (dao.updateAddById(uid,address)>0) {
+            return ResponseResult.ok();
+        }
+        return ResponseResult.fail();
+    }
 }
