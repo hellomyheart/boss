@@ -18,6 +18,7 @@ public class OSSTest {
     public void t1() throws IOException {
         //本地文件路径
         FileInputStream fis=new FileInputStream("D:\\桌面壁纸2\\4.jpg");
+
         ByteArrayOutputStream baos=new ByteArrayOutputStream();
         byte[] data=new byte[1024];
         int len;

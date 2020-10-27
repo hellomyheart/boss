@@ -24,6 +24,6 @@ public interface ResumeMapper extends BaseMapper<Resume> {
     @Update("update resume set status=2 where u_id = #{u_id}")
     int updateById(int u_id);
 
-    @Update("update resume set ossbucketname=#{ossbucketname},filename=#{filename},filecreatetime=now() where u_id=#{u_id}")
-    void updatenameById(int u_id, String ossbucketname, String filename);
+    @Update("update resume set ossbucketname=#{ossbucketname},filename=#{filename},filecreatetime=now(),address=#{address} where u_id=#{u_id}")
+    void updatenameById(int u_id, String ossbucketname, String filename,String address);
 }

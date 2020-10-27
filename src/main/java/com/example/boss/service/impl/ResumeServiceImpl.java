@@ -1,6 +1,7 @@
 package com.example.boss.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.boss.config.SystemConfig;
 import com.example.boss.dto.ResumeDto;
 import com.example.boss.dto.Resumeupdatedto;
 import com.example.boss.entity.Resume;
@@ -9,12 +10,16 @@ import com.example.boss.mapper.ResumeMapper;
 import com.example.boss.mapper.UserMapper;
 import com.example.boss.service.ResumeService;
 import com.example.boss.third.AliOssUtil;
+import com.example.boss.util.DateUtil;
 import com.example.boss.util.TokenUtil;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.UUID;
@@ -113,8 +118,11 @@ public class ResumeServiceImpl implements ResumeService {
             String filename = file.getOriginalFilename();
             //上传文件
             String s = AliOssUtil.uploadByte(AliOssUtil.BucketName, filename, file.getBytes());
+            //获取上传文件的链接
+            String url = AliOssUtil.getUrl(AliOssUtil.BucketName, filename);
+            System.out.println("url = " + url);
             //把文件名插入数据库
-            dao.updatenameById(uid,AliOssUtil.BucketName,filename);
+            dao.updatenameById(uid,AliOssUtil.BucketName,filename,url);
             return ResponseResult.ok();
         }
         return ResponseResult.fail();
