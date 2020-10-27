@@ -30,4 +30,9 @@ public class UserLogServiceImpl implements UserLogService {
         }
         return ResponseResult.fail();
     }
+
+    @Override
+    public ResponseResult query() {
+        return ResponseResult.ok(mapper.selectList(null));
+    }
 }

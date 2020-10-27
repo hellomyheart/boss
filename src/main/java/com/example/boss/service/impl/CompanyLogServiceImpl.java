@@ -1,6 +1,9 @@
 package com.example.boss.service.impl;
 
+import com.example.boss.mapper.CompanyLogMapper;
 import com.example.boss.service.CompanyLogService;
+import com.example.boss.vo.ResponseResult;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -11,4 +14,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class CompanyLogServiceImpl implements CompanyLogService {
+    @Autowired
+    private CompanyLogMapper mapper;
+    @Override
+    public ResponseResult queryAll() {
+        return ResponseResult.ok(mapper.selectList(null));
+    }
 }

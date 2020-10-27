@@ -13,4 +13,6 @@ import com.example.boss.vo.ResponseResult;
 public interface UserLogService {
 
     ResponseResult add(UserLogDto logDto);
+
+    ResponseResult query();
 }

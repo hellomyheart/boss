@@ -1,6 +1,8 @@
 package com.example.boss.service;
 
 
+import com.example.boss.vo.ResponseResult;
+
 /**
  * @ProjectName: boss
  * @Author: Jsx
@@ -8,5 +10,5 @@ package com.example.boss.service;
  * @Description:
  */
 public interface CompanyLogService {
-
+    ResponseResult queryAll();
 }

@@ -25,4 +25,9 @@ public class UserLogController {
     public ResponseResult save(UserLogDto logDto){
         return service.add(logDto);
     }
+
+    @PostMapping("query")
+    public ResponseResult query(){
+        return service.query();
+    }
 }
