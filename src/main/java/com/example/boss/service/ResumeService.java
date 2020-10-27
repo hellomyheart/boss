@@ -1,6 +1,7 @@
 package com.example.boss.service;
 
 import com.example.boss.dto.ResumeDto;
+import com.example.boss.dto.Resumeupdatedto;
 import com.example.boss.entity.Resume;
 import com.example.boss.vo.ResponseResult;
 
@@ -31,8 +32,8 @@ public interface ResumeService {
     /**
      * 修改简历
      * @param token
-     * @param address
+     * @param
      * @return
      */
-    ResponseResult update(String token,String address);
+    ResponseResult update(String token, String address);
 }

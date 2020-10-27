@@ -1,6 +1,7 @@
 package com.example.boss.service.impl;
 
 import com.example.boss.dto.ResumeDto;
+import com.example.boss.dto.Resumeupdatedto;
 import com.example.boss.entity.Resume;
 import com.example.boss.entity.User;
 import com.example.boss.mapper.ResumeMapper;
@@ -60,7 +61,7 @@ public class ResumeServiceImpl implements ResumeService {
     /**
      * 修改简历
      * @param token
-     * @param address
+     * @param
      * @return
      */
     @Override

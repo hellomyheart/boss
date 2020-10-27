@@ -1,6 +1,7 @@
 package com.example.boss.controller;
 
 import com.example.boss.dto.ResumeDto;
+import com.example.boss.dto.Resumeupdatedto;
 import com.example.boss.entity.Resume;
 import com.example.boss.service.ResumeService;
 import com.example.boss.vo.ResponseResult;
@@ -40,18 +41,18 @@ public class ResumeController {
      */
     @GetMapping("/select")
     public ResponseResult select(String token){
-        return ResponseResult.ok(service.select(token));
+        return service.select(token);
     }
 
 
     /**
      * 更改简历地址信息
      * @param token
-     * @param address
+     * @param
      * @return
      */
     @PutMapping("/update")
-    public ResponseResult update(String token,String address){
+    public ResponseResult update(String token, String address){
         return service.update(token,address);
     }
 }
