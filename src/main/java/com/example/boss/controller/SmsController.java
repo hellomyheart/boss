@@ -1,12 +1,10 @@
 package com.example.boss.controller;
 
+import com.example.boss.dto.SmsRCodeDto;
 import com.example.boss.service.SmsService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ProjectName: boss
@@ -20,8 +18,13 @@ public class SmsController {
     @Autowired
     private SmsService service;
 
-    @GetMapping("sendRCode")
-    public ResponseResult sendRCode(String phone){
+    @PostMapping("sendRCode/{phone}")
+    public ResponseResult sendRCode(@PathVariable String phone){
         return service.sendRcode(phone);
+    }
+
+    @PostMapping("checkRCode")
+    public ResponseResult checkRCode(@RequestBody SmsRCodeDto dto){
+        return service.checkRCode(dto);
     }
 }

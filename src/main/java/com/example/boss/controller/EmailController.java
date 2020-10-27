@@ -1,6 +1,7 @@
 package com.example.boss.controller;
 
 import com.example.boss.dto.EmailDto;
+import com.example.boss.dto.EmailRCodeDto;
 import com.example.boss.service.EmailService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,10 @@ public class EmailController {
     @PostMapping("sendEmail")
     public ResponseResult sendEmail(EmailDto dto){
         return service.sendRCode(dto);
+    }
+
+    @PostMapping("checkRCode")
+    public ResponseResult checkRCode(EmailRCodeDto dto){
+        return service.checkRCode(dto);
     }
 }
