@@ -1,11 +1,14 @@
 package com.example.boss.controller;
 
+import com.example.boss.config.SystemConfig;
 import com.example.boss.dto.CompanyDto;
 import com.example.boss.dto.CompanyUpdateDto;
 import com.example.boss.service.CompanyService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 /**
@@ -22,13 +25,13 @@ public class CompanyController {
 
     /**
      * 添加公司
-     * @param token
+     * @param request
      * @param dto
      * @return
      */
     @PostMapping("add")
-    public ResponseResult add(String token, CompanyDto dto){
-        return service.add(token,dto);
+    public ResponseResult add(HttpServletRequest request, CompanyDto dto){
+        return service.add(request.getHeader(SystemConfig.TOKEN_HEADER),dto);
     }
 
     /**
@@ -38,8 +41,8 @@ public class CompanyController {
      * @return
      */
     @PostMapping("update")
-    public ResponseResult update(Integer id, CompanyUpdateDto dto){
-        return service.update(id, dto);
+    public ResponseResult update(Integer id,HttpServletRequest request, CompanyUpdateDto dto){
+        return service.update(id,request.getHeader(SystemConfig.TOKEN_HEADER), dto);
     }
 
     /**
@@ -58,7 +61,7 @@ public class CompanyController {
      * @return
      */
     @PostMapping("delete")
-    public ResponseResult delete(Integer id){
-        return service.delete(id);
+    public ResponseResult delete(Integer id,HttpServletRequest request){
+        return service.delete(id,request.getHeader(SystemConfig.TOKEN_HEADER));
     }
 }

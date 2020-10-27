@@ -11,7 +11,6 @@ import lombok.Data;
 @Data
 public class CompanyUpdateDto {
 
-    private int uid;
     private String name;
     private String address;
     private String decription;

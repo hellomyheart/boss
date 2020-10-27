@@ -14,10 +14,10 @@ public interface CompanyService {
 
     ResponseResult add(String token, CompanyDto dto);
 
-    ResponseResult update(Integer id, CompanyUpdateDto dto);
+    ResponseResult update(Integer id, String token,CompanyUpdateDto dto);
 
     ResponseResult query(int id);
 
-    ResponseResult delete(Integer id);
+    ResponseResult delete(Integer id,String token);
 
 }

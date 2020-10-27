@@ -1,5 +1,6 @@
 package com.example.boss.controller;
 
+import com.example.boss.config.SystemConfig;
 import com.example.boss.dto.UserDto;
 import com.example.boss.dto.UserLoginDto;
 import com.example.boss.dto.UserUpdateDto;
@@ -7,6 +8,8 @@ import com.example.boss.service.UserService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @description
@@ -76,15 +79,15 @@ public class UserController {
 
     /**
      * 修改密码
-     * @param token
+     * @param request
      * @param code
      * @param email
      * @param password
      * @return
      */
     @GetMapping("updatePwd")
-    public ResponseResult updatePwd(String token, String code, String email, String password){
-        return service.update(token, code, email, password);
+    public ResponseResult updatePwd(HttpServletRequest request, String code, String email, String password){
+        return service.update(request.getHeader(SystemConfig.TOKEN_HEADER), code, email, password);
     }
 
     /**

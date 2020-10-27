@@ -46,11 +46,12 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     @Transactional
-    public ResponseResult update(Integer id, CompanyUpdateDto dto) {
-        Company company = new Company(id, dto.getUid(), dto.getAddress(), dto.getDecription(), dto.getName(),1, new Date());
+    public ResponseResult update(Integer id, String token,CompanyUpdateDto dto) {
+        int uid = TokenUtil.getUid(token);
+        Company company = new Company(id, uid, dto.getAddress(), dto.getDecription(), dto.getName(),1, new Date());
         if (mapper.updateById(company)>0) {
             //记录日志
-            CompanyLog companyLog = new CompanyLog(dto.getUid(), dto.getUid() + "修改公司信息", new Date(), 1);
+            CompanyLog companyLog = new CompanyLog(uid, uid+ "修改公司信息", new Date(), 1);
             logMapper.insert(companyLog);
             return ResponseResult.ok();
         }
@@ -63,9 +64,14 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     @Override
-    public ResponseResult delete(Integer id) {
+    @Transactional
+    public ResponseResult delete(Integer id,String token) {
+        int uid = TokenUtil.getUid(token);
         Company company = new Company(id, 2);
         if (mapper.updateById(company)>0) {
+            //记录日志
+            CompanyLog companyLog = new CompanyLog(uid,uid + "删除公司", new Date(), 1);
+            logMapper.insert(companyLog);
             return ResponseResult.ok();
         }
         return ResponseResult.fail();
