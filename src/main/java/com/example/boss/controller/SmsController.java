@@ -24,7 +24,7 @@ public class SmsController {
     }
 
     @PostMapping("checkRCode")
-    public ResponseResult checkRCode(@RequestBody SmsRCodeDto dto){
+    public ResponseResult checkRCode(SmsRCodeDto dto){
         return service.checkRCode(dto);
     }
 }

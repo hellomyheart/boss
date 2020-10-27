@@ -13,7 +13,7 @@ import java.util.Properties;
  * @Description: 基于JAVA的邮箱，实现邮箱发送
  */
 public class EmailUtil {
-    public static boolean sendEmail(String email,String sub,String content,int code)  {
+    public static boolean sendEmail(String email,int code)  {
         //1.设置常规信息  Map集合的子类  可以持久化
         Properties properties=new Properties();
         //开启邮箱认证
@@ -43,10 +43,10 @@ public class EmailUtil {
              * */
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
             //设置邮箱标题
-            message.setSubject(sub);
+            message.setSubject("boss直聘");
             //设置邮箱的正文内容
             //message.setText();
-            message.setContent(content + code, "text/html;charset=UTF-8");
+            message.setContent("您正在进行的操作的验证码为" + code, "text/html;charset=UTF-8");
             //发送邮件
             Transport.send(message);
             return true;

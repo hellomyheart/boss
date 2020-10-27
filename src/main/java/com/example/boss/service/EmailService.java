@@ -1,6 +1,5 @@
 package com.example.boss.service;
 
-import com.example.boss.dto.EmailDto;
 import com.example.boss.dto.EmailRCodeDto;
 import com.example.boss.vo.ResponseResult;
 
@@ -12,7 +11,7 @@ import com.example.boss.vo.ResponseResult;
  */
 public interface EmailService {
     //发送验证码
-    ResponseResult sendRCode(EmailDto dto);
+    ResponseResult sendRCode(String email);
 
     //检查验证码
     ResponseResult checkRCode(EmailRCodeDto dto);

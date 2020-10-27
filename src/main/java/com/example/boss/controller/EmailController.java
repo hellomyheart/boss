@@ -1,13 +1,10 @@
 package com.example.boss.controller;
 
-import com.example.boss.dto.EmailDto;
 import com.example.boss.dto.EmailRCodeDto;
 import com.example.boss.service.EmailService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @ProjectName: boss
@@ -21,9 +18,9 @@ public class EmailController {
     @Autowired
     private EmailService service;
 
-    @PostMapping("sendEmail")
-    public ResponseResult sendEmail(EmailDto dto){
-        return service.sendRCode(dto);
+    @PostMapping("sendEmail/{email}")
+    public ResponseResult sendEmail(@PathVariable String email){
+        return service.sendRCode(email);
     }
 
     @PostMapping("checkRCode")
