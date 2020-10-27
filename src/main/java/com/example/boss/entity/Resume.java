@@ -24,6 +24,9 @@ public class Resume {
     private String address;//简历地址
     private Date createtime;
     private Date updatetime;
+    private String ossbucketname;//云储存组名
+    private String filename;//文件名
+    private Date filecreatetime;//简历上传时间
 
     public Resume(int u_id, String address, Date createtime) {
         this.u_id = u_id;

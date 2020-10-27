@@ -4,8 +4,10 @@ import com.example.boss.dto.ResumeDto;
 import com.example.boss.dto.Resumeupdatedto;
 import com.example.boss.entity.Resume;
 import com.example.boss.vo.ResponseResult;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 
 /**
  * @ProjectName: boss
@@ -15,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface ResumeService {
     /**
-     * 上传简历
+     * 增加简历信息
      * @param token
      * @param address
      * @return
@@ -36,4 +38,19 @@ public interface ResumeService {
      * @return
      */
     ResponseResult update(String token, String address);
+
+    /**
+     * 删除简历/修改状态
+     * @param token
+     * @return
+     */
+    ResponseResult delete(String token);
+
+    /**
+     * 上传简历附件
+     * @param token
+     * @param file
+     * @return
+     */
+    ResponseResult insert(String token, MultipartFile file) throws IOException;
 }

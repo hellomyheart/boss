@@ -7,6 +7,9 @@ import com.example.boss.service.ResumeService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
  * @ProjectName: boss
@@ -54,5 +57,27 @@ public class ResumeController {
     @PutMapping("/update")
     public ResponseResult update(String token, String address){
         return service.update(token,address);
+    }
+
+    /**
+     * 删除简历
+     * @param token
+     * @return
+     */
+    @PutMapping("/delect")
+    public ResponseResult update(String token){
+        return service.delete(token);
+    }
+
+    /**
+     * 上传简历附件
+     * @param file
+     * @param token
+     * @return
+     * @throws IOException
+     */
+    @PostMapping("/insert")
+    public ResponseResult insert(MultipartFile file,String token) throws IOException {
+        return service.insert(token,file);
     }
 }
