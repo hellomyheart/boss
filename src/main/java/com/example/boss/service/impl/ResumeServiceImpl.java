@@ -1,5 +1,6 @@
 package com.example.boss.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.boss.dto.ResumeDto;
 import com.example.boss.dto.Resumeupdatedto;
 import com.example.boss.entity.Resume;
@@ -55,7 +56,10 @@ public class ResumeServiceImpl implements ResumeService {
         //获取id
         int uid = TokenUtil.getUid(token);
 
-        return ResponseResult.ok(dao.selectById(uid));
+        QueryWrapper<Resume> qw = new QueryWrapper<>();
+        qw.eq("u_id",uid);
+        qw.orderByDesc("createtime");
+        return ResponseResult.ok(dao.selectList(qw));
     }
 
     /**

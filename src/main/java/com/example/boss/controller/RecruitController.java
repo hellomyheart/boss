@@ -3,6 +3,7 @@ package com.example.boss.controller;
 import com.example.boss.service.RecruitService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,8 +23,8 @@ public class RecruitController {
      * 查询所有招聘信息
      * @return
      */
-    @RequestMapping("/selectAll")
+    @GetMapping("/selectAll")
     public ResponseResult selectAll(){
-        return ResponseResult.ok(service.selectAll());
+        return service.selectAll();
     }
 }

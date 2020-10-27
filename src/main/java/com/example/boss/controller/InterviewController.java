@@ -38,7 +38,7 @@ public class InterviewController {
      */
     @PutMapping("/updateNo")
     public ResponseResult updateNo(String token){
-        service.updateYes(token);
+        service.updateNo(token);
         return ResponseResult.ok();
     }
 }

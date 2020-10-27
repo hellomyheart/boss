@@ -1,5 +1,7 @@
 package com.example.boss.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.boss.entity.Recruit;
 import com.example.boss.mapper.RecruitMapper;
 import com.example.boss.service.RecruitService;
 import com.example.boss.vo.ResponseResult;
@@ -23,6 +25,8 @@ public class RecruitServiceImpl implements RecruitService {
      */
     @Override
     public ResponseResult selectAll() {
-        return ResponseResult.ok(dao.selectAll(null));
+        QueryWrapper<Recruit> qw = new QueryWrapper<>();
+        qw.orderByDesc("createtime");
+        return ResponseResult.ok(dao.selectList(qw));
     }
 }
