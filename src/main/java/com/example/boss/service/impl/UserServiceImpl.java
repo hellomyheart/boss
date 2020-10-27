@@ -23,6 +23,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -76,6 +77,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public ResponseResult register(UserDto dto) {
         //校验是否可用
         User user=mapper.selectByNamePhone(dto.getNickname(),dto.getPhone());
@@ -98,6 +100,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public ResponseResult login(UserLoginDto loginDto) {
         //校验
         User user = mapper.selectByName(loginDto.getName());
@@ -113,6 +116,9 @@ public class UserServiceImpl implements UserService {
                 JedisUtil.getInstance().STRINGS.setEx(RedisKeyConfig.LOGIN_TOKEN + token , RedisKeyConfig.LOGIN_TIME , new JSONObject(user).toString());
                 //记录登录过的账号信息
                 JedisUtil.getInstance().STRINGS.setEx(RedisKeyConfig.LOGIN_USER+user.getId(),RedisKeyConfig.LOGIN_TIME,token);
+                //记录日志
+                UserLog userLog = new UserLog(user.getId(), user.getId() + "登录", new Date(), 1);
+                logMapper.insert(userLog);
                 //返回结果
                 return ResponseResult.ok(token);
             }
