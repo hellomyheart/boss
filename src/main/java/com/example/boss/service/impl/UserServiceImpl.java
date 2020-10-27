@@ -7,6 +7,8 @@ import com.example.boss.dto.UserDto;
 import com.example.boss.dto.UserLoginDto;
 import com.example.boss.dto.UserUpdateDto;
 import com.example.boss.entity.User;
+import com.example.boss.entity.UserLog;
+import com.example.boss.mapper.UserLogMapper;
 import com.example.boss.mapper.UserMapper;
 import com.example.boss.service.UserService;
 import com.example.boss.third.JedisUtil;
@@ -35,6 +37,8 @@ import java.util.Date;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper mapper;
+    @Autowired
+    private UserLogMapper logMapper;
 
     @Value("${boss.passkey}")
     private String pk;
@@ -82,9 +86,13 @@ public class UserServiceImpl implements UserService {
                 dto.setPassword(EncryptUtil.aesenc(pk, dto.getPassword()));
                 //新增
                 User u2 = new User(dto.getPhone(), dto.getNickname(), dto.getPassword(), dto.getEmail(), 1, new Date());
-                mapper.insert(u2);
+                if (mapper.insert(u2)>0){
+                    //记录日志
+                    UserLog userLog = new UserLog(u2.getId(), "注册新用户", new Date(), 1);
+                    logMapper.insert(userLog);
+                    return ResponseResult.ok();
+                }
             }
-            return ResponseResult.ok();
         }
         return ResponseResult.fail();
     }
