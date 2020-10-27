@@ -13,13 +13,13 @@ import java.util.Date;
 /**
  * @ProjectName: boss
  * @Author: Jsx
- * @Time: 2020/10/27 13:49
- * @Description: 用户日志表
+ * @Time: 2020/10/27 15:16
+ * @Description: 公司日志表
  */
 @Data
 @NoArgsConstructor
-@TableName("user_log")
-public class UserLog {
+@TableName("company_log")
+public class CompanyLog {
     @TableId(type = IdType.AUTO)
     private int id;
     @TableField("u_id")
@@ -29,7 +29,7 @@ public class UserLog {
     private Date createtime;
     private int status;
 
-    public UserLog(int uid, String type, Date createtime, int status) {
+    public CompanyLog(int uid, String type, Date createtime, int status) {
         this.uid = uid;
         this.type = type;
         this.createtime = createtime;

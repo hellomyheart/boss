@@ -1,6 +1,5 @@
 package com.example.boss.controller;
 
-import com.example.boss.config.SystemConfig;
 import com.example.boss.dto.CompanyDto;
 import com.example.boss.dto.CompanyUpdateDto;
 import com.example.boss.service.CompanyService;
@@ -8,7 +7,6 @@ import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ProjectName: boss

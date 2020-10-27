@@ -4,12 +4,15 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.boss.dto.CompanyDto;
 import com.example.boss.dto.CompanyUpdateDto;
 import com.example.boss.entity.Company;
+import com.example.boss.entity.CompanyLog;
+import com.example.boss.mapper.CompanyLogMapper;
 import com.example.boss.mapper.CompanyMapper;
 import com.example.boss.service.CompanyService;
 import com.example.boss.util.TokenUtil;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
@@ -23,20 +26,32 @@ import java.util.Date;
 public class CompanyServiceImpl implements CompanyService {
     @Autowired
     private CompanyMapper mapper;
+    @Autowired
+    private CompanyLogMapper logMapper;
 
 
     @Override
+    @Transactional
     public ResponseResult add(String token, CompanyDto dto) {
         int uid = TokenUtil.getUid(token);
         Company company = new Company(uid, dto.getName(), dto.getAddress(), dto.getDecription(), 1, new Date());
-        mapper.insert(company);
-        return ResponseResult.ok();
+        if (mapper.insert(company)>0) {
+            //记录日志
+            CompanyLog companyLog = new CompanyLog(uid, uid + "添加公司", new Date(), 1);
+            logMapper.insert(companyLog);
+            return ResponseResult.ok();
+        }
+        return ResponseResult.fail();
     }
 
     @Override
+    @Transactional
     public ResponseResult update(Integer id, CompanyUpdateDto dto) {
         Company company = new Company(id, dto.getUid(), dto.getAddress(), dto.getDecription(), dto.getName(),1, new Date());
         if (mapper.updateById(company)>0) {
+            //记录日志
+            CompanyLog companyLog = new CompanyLog(dto.getUid(), dto.getUid() + "修改公司信息", new Date(), 1);
+            logMapper.insert(companyLog);
             return ResponseResult.ok();
         }
         return ResponseResult.fail();
