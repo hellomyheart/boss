@@ -133,23 +133,32 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             //比对
             if (code.equals(JedisUtil.getInstance().STRINGS.get(RedisKeyConfig.SMS_RCODE + email))) {
+                //密文加密
                 String newPassword = EncryptUtil.aesenc(pk,password);
-                mapper.findPwd(email, newPassword);
-                return ResponseResult.ok();
+                if (mapper.findPwd(email, newPassword)>0) {
+                    //记录日志
+                    UserLog userLog = new UserLog(user.getId(), user.getId() + "找回密码", new Date(), 1);
+                    logMapper.insert(userLog);
+                    return ResponseResult.ok();
+                }
             }
-            return ResponseResult.fail();
         }
-
         return ResponseResult.fail();
     }
 
     @Override
+    @Transactional
     public ResponseResult update(String token, String code, String email, String password) {
         int uid = TokenUtil.getUid(token);
         if (code.equals(JedisUtil.getInstance().STRINGS.get(RedisKeyConfig.SMS_RCODE + email))){
+            //密文加密 AES
             String newPassword = EncryptUtil.aesenc(pk,password);
-            mapper.updatePwd(uid,newPassword);
-            return ResponseResult.ok();
+            if (mapper.updatePwd(uid,newPassword)>0) {
+                //记录日志
+                UserLog userLog = new UserLog(uid, uid + "修改密码", new Date(), 1);
+                logMapper.insert(userLog);
+                return ResponseResult.ok();
+            }
         }
         return ResponseResult.fail();
     }
@@ -158,6 +167,9 @@ public class UserServiceImpl implements UserService {
     public ResponseResult modify(Integer id, UserUpdateDto dto) {
         User user = new User(id, dto.getPhone(), dto.getEmail(), dto.getNickname(), dto.getIcon(), 1, new Date());
         if (mapper.updateById(user)>0) {
+            //记录日志
+            UserLog userLog = new UserLog(user.getId(), user.getId() + "修改信息", new Date(), 1);
+            logMapper.insert(userLog);
             return ResponseResult.ok();
         }
         return ResponseResult.fail();
