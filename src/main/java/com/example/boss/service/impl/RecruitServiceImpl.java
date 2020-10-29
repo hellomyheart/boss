@@ -26,6 +26,7 @@ import java.util.List;
 
 @Service
 public class RecruitServiceImpl implements RecruitService {
+
     @Autowired
     private RecruitMapper recruitMapper;
 

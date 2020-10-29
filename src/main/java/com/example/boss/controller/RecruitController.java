@@ -19,8 +19,10 @@ public class RecruitController {
 
     /**
      * 发布招聘信息
-     * @param recruitDto
-     * @return
+     * @author lss
+     * @param request
+     * @param recruitDto 包含p_id职位；num招聘人数；address工作地点
+     * @return 状态code值：1成功，2失败，3,登陆失败；提示信息：成功OK，失败FAIL；响应数据，没有为null
      */
     //TODO 此处需要用到令牌，去拿redis中的用户信息
     @PostMapping("/sendResume")
@@ -30,8 +32,9 @@ public class RecruitController {
 
     /**
      * 邀请面试
-     * @param interviewDto 前端传入HR选择的面试信息
-     * @return 邀请状态，成功为ok
+     * @author lss
+     * @param interviewDto 包含address面试地址；i_time面试时间；status面试状态
+     * @return 状态code值：1成功，2失败，3,登陆失败；提示信息：成功OK，失败FAIL；响应数据，没有为null
      */
     @PostMapping("/invited")
     public ResponseResult invited(InterviewDto interviewDto){
@@ -40,7 +43,8 @@ public class RecruitController {
 
     /**
      * 申请查看应聘者简历
-     * @param u_id 被查看应聘者的简历
+     * @author lss
+     * @param u_id 简历对应应聘者id
      * @return 简历地址
      */
     //TODO 缺少相关条件
@@ -51,9 +55,10 @@ public class RecruitController {
 
     /**
      * 修改招聘信息
-     * @param id 被修改找您信息的id
-     * @param recruitDto 前端传入的修改信息
-     * @return 返回修改的状态
+     * @author lss
+     * @param id 被修改招聘信息id
+     * @param recruitDto 招聘信息修改参数
+     * @return 状态code值：1成功，2失败，3,登陆失败；提示信息：成功OK，失败FAIL；响应数据，没有为null
      */
     @PostMapping("/modifyRecruit")
     public ResponseResult modifyRecruit(HttpServletRequest request,Integer id,RecruitDto recruitDto){
@@ -62,8 +67,10 @@ public class RecruitController {
 
     /**
      * 删除招聘信息
+     * @author lss
+     * @param request 承载请求头的令牌
      * @param id 被删除招聘信息的id
-     * @return 返回删除的状态，成功返回ok,失败返回fail
+     * @return 状态code值：1成功，2失败，3,登陆失败；提示信息：成功OK，失败FAIL；响应数据，没有为null
      */
     @PostMapping("/deleteRecruit")
     public ResponseResult deleteRecruit(HttpServletRequest request,Integer id){
@@ -72,8 +79,11 @@ public class RecruitController {
 
     /**
      * 查询公司的所发布的所有招聘信息
+     * @author lss
+     * @param page 页数
+     * @param limit 页容量
      * @param id 被查询的公司id
-     * @return 查询结果
+     * @return 状态code值：1成功，2失败，3,登陆失败；提示信息：成功OK，失败FAIL；响应数据，没有为null
      */
     @PostMapping("/selectAllRecruitByCompany")
     public ResponseResult selectAllRecruitByCompany(Integer page,Integer limit,Integer id){
