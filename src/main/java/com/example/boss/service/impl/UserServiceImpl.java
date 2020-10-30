@@ -127,6 +127,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public ResponseResult find(String email,String code,String password) {
         //校验
         User user = mapper.selectByEmail(email);
@@ -164,6 +165,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public ResponseResult modify(Integer id, UserUpdateDto dto) {
         User user = new User(id, dto.getPhone(), dto.getEmail(), dto.getNickname(), dto.getIcon(), 1, new Date());
         if (mapper.updateById(user)>0) {
