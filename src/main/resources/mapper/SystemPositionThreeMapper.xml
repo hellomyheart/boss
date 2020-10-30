@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.boss.mapper.SystemPositionThreeMapper">
+  <resultMap id="BaseResultMap" type="com.example.boss.entity.SystemPositionThree">
+    <!--@mbg.generated-->
+    <!--@Table system_position_three-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="sp_name" jdbcType="VARCHAR" property="spName" />
+    <result column="spt_id" jdbcType="INTEGER" property="sptId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, sp_name, spt_id, `status`
+  </sql>
+</mapper>

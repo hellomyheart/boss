@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.boss.mapper.CompanyMapper">
+  <resultMap id="BaseResultMap" type="com.example.boss.entity.Company">
+    <!--@mbg.generated-->
+    <!--@Table company-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="decription" jdbcType="VARCHAR" property="decription" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, u_id, `name`, address, decription, `status`, createtime, updatetime
+  </sql>
+</mapper>

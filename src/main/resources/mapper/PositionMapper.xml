@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.boss.mapper.PositionMapper">
+  <resultMap id="BaseResultMap" type="com.example.boss.entity.Position">
+    <!--@mbg.generated-->
+    <!--@Table `position`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="c_id" jdbcType="INTEGER" property="cId" />
+    <result column="ri_id" jdbcType="INTEGER" property="riId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="decription" jdbcType="VARCHAR" property="decription" />
+    <result column="skill" jdbcType="VARCHAR" property="skill" />
+    <result column="salary" jdbcType="VARCHAR" property="salary" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, c_id, ri_id, `name`, decription, skill, salary, createtime, updatetime, `status`
+  </sql>
+</mapper>

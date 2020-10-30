@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.boss.mapper.DistrictMapper">
+  <resultMap id="BaseResultMap" type="com.example.boss.entity.District">
+    <!--@mbg.generated-->
+    <!--@Table district-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="c_id" jdbcType="INTEGER" property="cId" />
+    <result column="d_name" jdbcType="VARCHAR" property="dName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, c_id, d_name
+  </sql>
+</mapper>

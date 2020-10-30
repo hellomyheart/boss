@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.boss.mapper.AuthorityMapper">
+  <resultMap id="BaseResultMap" type="com.example.boss.entity.Authority">
+    <!--@mbg.generated-->
+    <!--@Table authority-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="a_id" jdbcType="INTEGER" property="aId" />
+    <result column="r_id" jdbcType="INTEGER" property="rId" />
+    <result column="ri_id" jdbcType="INTEGER" property="riId" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, a_id, r_id, ri_id, `status`, createtime, updatetime
+  </sql>
+</mapper>

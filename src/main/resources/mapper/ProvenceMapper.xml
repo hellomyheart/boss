@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.boss.mapper.ProvenceMapper">
+  <resultMap id="BaseResultMap" type="com.example.boss.entity.Provence">
+    <!--@mbg.generated-->
+    <!--@Table provence-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="p_name" jdbcType="VARCHAR" property="pName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, p_name
+  </sql>
+</mapper>
