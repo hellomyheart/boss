@@ -33,3 +33,5 @@ build/
 .vscode/
 /src/main/java/com/example/boss/third/JedisUtil.java
 /src/main/java/com/example/boss/third/SmsUtil.java
+/src/main/java/com/example/boss/third/AliOssUtil.java
+/src/main/resources/application.yml
