@@ -30,4 +30,14 @@ public class UserController {
     public ResponseResult checkPhone(String phone){
         return service.checkPhone(phone);
     }
+
+    /**
+     * 检查昵称是否可用
+     * @param nickname
+     * @return
+     */
+    @GetMapping("checkNickName")
+    public ResponseResult checkNickName(String nickname){
+        return service.checkNickName(nickname);
+    }
 }

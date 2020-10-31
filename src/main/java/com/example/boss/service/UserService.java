@@ -12,5 +12,8 @@ import com.example.boss.vo.ResponseResult;
 public interface UserService {
     //检查手机号是否可用
     ResponseResult checkPhone(String phone);
+
+    //检查昵称是否可用
+    ResponseResult checkNickName(String nickname);
 }
 
