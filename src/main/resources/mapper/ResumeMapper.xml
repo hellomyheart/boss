@@ -14,4 +14,5 @@
     <!--@mbg.generated-->
     id, a_id, address, createtime, updatetime
   </sql>
+
 </mapper>

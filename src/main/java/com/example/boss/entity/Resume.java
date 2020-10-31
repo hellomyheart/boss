@@ -63,4 +63,6 @@ public class Resume implements Serializable {
     public static final String COL_CREATETIME = "createtime";
 
     public static final String COL_UPDATETIME = "updatetime";
+
+
 }
