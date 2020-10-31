@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.boss.mapper.RecruitLogMapper">
+  <resultMap id="BaseResultMap" type="com.example.boss.entity.RecruitLog">
+    <!--@mbg.generated-->
+    <!--@Table recruit_log-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="decription" jdbcType="VARCHAR" property="decription" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, u_id, createtime, `type`, decription
+  </sql>
+</mapper>

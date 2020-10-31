@@ -5,13 +5,16 @@
     <!--@mbg.generated-->
     <!--@Table recruit-->
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="p_id" jdbcType="INTEGER" property="pId" />
+    <result column="num" jdbcType="INTEGER" property="num" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="decription" jdbcType="VARCHAR" property="decription" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="salary" jdbcType="VARCHAR" property="salary" />
+    <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, u_id, createtime, `type`, decription
+    id, p_id, num, address, createtime, updatetime, salary, `status`
   </sql>
 </mapper>
