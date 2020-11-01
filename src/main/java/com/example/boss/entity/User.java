@@ -112,4 +112,12 @@ public class User implements Serializable {
         this.createtime = createtime;
         this.updatetime = updatetime;
     }
+
+    public User(Integer id, String email, String nickname, String icon, Date updatetime) {
+        this.id = id;
+        this.email = email;
+        this.nickname = nickname;
+        this.icon = icon;
+        this.updatetime = updatetime;
+    }
 }

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.boss.config.RedisKeyConfig;
 import com.example.boss.dto.UserDto;
 import com.example.boss.dto.UserLoginDto;
+import com.example.boss.dto.UserUpdateDto;
 import com.example.boss.entity.User;
 import com.example.boss.entity.UserLog;
 import com.example.boss.mapper.UserLogMapper;
@@ -152,6 +153,20 @@ public class UserServiceImpl implements UserService {
                 logMapper.insert(userLog);
                 return ResponseResult.ok();
             }
+        }
+        return ResponseResult.fail();
+    }
+
+    @Override
+    @Transactional
+    public ResponseResult updateInfo(String token, UserUpdateDto dto) {
+        int uid = TokenUtil.getUid(token);
+        User user = new User(uid, dto.getEmail(), dto.getIcon(), dto.getNickname(), new Date());
+        if (mapper.updateById(user)>0){
+            //记录日志
+            UserLog userLog = new UserLog(uid, new Date(), "update", uid + "修改个人信息");
+            logMapper.insert(userLog);
+            return ResponseResult.ok();
         }
         return ResponseResult.fail();
     }

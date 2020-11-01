@@ -3,6 +3,7 @@ package com.example.boss.controller;
 import com.example.boss.config.SystemConfig;
 import com.example.boss.dto.UserDto;
 import com.example.boss.dto.UserLoginDto;
+import com.example.boss.dto.UserUpdateDto;
 import com.example.boss.service.UserService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,5 +91,16 @@ public class UserController {
     @GetMapping("updatePwd")
     public ResponseResult updatePwd(HttpServletRequest request, String code, String email, String password){
         return service.update(request.getHeader(SystemConfig.TOKEN_HEADER), code, email, password);
+    }
+
+    /**
+     * 修改个人信息
+     * @param request
+     * @param dto
+     * @return
+     */
+    @PostMapping("updateInfo")
+    public ResponseResult updateInfo(HttpServletRequest request, UserUpdateDto dto){
+        return service.updateInfo(request.getHeader(SystemConfig.TOKEN_HEADER),dto);
     }
 }
