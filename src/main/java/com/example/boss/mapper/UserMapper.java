@@ -11,4 +11,9 @@ public interface UserMapper extends BaseMapper<User> {
     @Select("select  * from user where nickname=#{n} or phone=#{p}")
     @ResultType(User.class)
     User selectByNamePhone(@Param("n") String  n , @Param("p") String p);
+
+
+    @Select("select * from user where phone =#{n}")
+    @ResultType(User.class)
+    User selectByPhone(String n);
 }

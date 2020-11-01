@@ -1,6 +1,7 @@
 package com.example.boss.controller;
 
 import com.example.boss.dto.UserDto;
+import com.example.boss.dto.UserLoginDto;
 import com.example.boss.service.UserService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,15 @@ public class UserController {
     @PostMapping("register")
     public ResponseResult register(UserDto dto){
         return service.register(dto);
+    }
+
+    /**
+     * 用户登录
+     * @param dto
+     * @return
+     */
+    @PostMapping("login")
+    public ResponseResult login(UserLoginDto dto){
+        return service.login(dto);
     }
 }

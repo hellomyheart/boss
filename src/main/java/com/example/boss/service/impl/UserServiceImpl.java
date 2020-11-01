@@ -3,15 +3,18 @@ package com.example.boss.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.boss.config.RedisKeyConfig;
 import com.example.boss.dto.UserDto;
+import com.example.boss.dto.UserLoginDto;
 import com.example.boss.entity.User;
 import com.example.boss.entity.UserLog;
 import com.example.boss.mapper.UserLogMapper;
 import com.example.boss.mapper.UserMapper;
 import com.example.boss.service.UserService;
 import com.example.boss.third.JedisUtil;
+import com.example.boss.third.JwtUtil;
 import com.example.boss.util.EncryptUtil;
 import com.example.boss.util.StrUtil;
 import com.example.boss.vo.ResponseResult;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -86,6 +89,30 @@ public class UserServiceImpl implements UserService {
                     logMapper.insert(userLog);
                     return ResponseResult.ok();
                 }
+            }
+        }
+        return ResponseResult.fail();
+    }
+
+    @Override
+    @Transactional
+    public ResponseResult login(UserLoginDto dto) {
+        User user = mapper.selectByPhone(dto.getPhone());
+        if (user != null) {
+            //比较密码
+            if (EncryptUtil.aesenc(pk,dto.getPassword()).equals(user.getPassword())){
+                //密码一致，生成令牌
+                String token = JwtUtil.createToken(user.getPhone());
+                //存储令牌
+                //记录令牌 对应的用户
+                JedisUtil.getInstance().STRINGS.setEx(RedisKeyConfig.LOGIN_TOKEN + token,RedisKeyConfig.LOGIN_TIME,new JSONObject(user).toString());
+                //记录登录过的账号信息
+                JedisUtil.getInstance().STRINGS.setEx(RedisKeyConfig.LOGIN_USER + user.getId(),RedisKeyConfig.LOGIN_TIME,token);
+                //记录日志
+                UserLog userLog = new UserLog(user.getId(), new Date(), "login", user.getNickname() + "登录");
+                logMapper.insert(userLog);
+                //返回结果
+                return ResponseResult.ok(token);
             }
         }
         return ResponseResult.fail();
