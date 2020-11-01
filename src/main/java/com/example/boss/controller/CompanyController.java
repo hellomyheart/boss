@@ -33,4 +33,15 @@ public class CompanyController {
     public ResponseResult save(HttpServletRequest request, CompanyDto dto){
         return service.save(request.getHeader(SystemConfig.TOKEN_HEADER),dto);
     }
+
+    /**
+     * 修改公司信息
+     * @param request
+     * @param dto
+     * @return
+     */
+    @PostMapping("update")
+    public ResponseResult update(Integer id,HttpServletRequest request,CompanyDto dto){
+        return service.updateInfo(id,request.getHeader(SystemConfig.TOKEN_HEADER),dto);
+    }
 }

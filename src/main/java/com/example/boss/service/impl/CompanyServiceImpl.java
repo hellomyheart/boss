@@ -36,4 +36,19 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
         }
         return ResponseResult.fail();
     }
+
+    @Override
+    @Transactional
+    public ResponseResult updateInfo(Integer id,String token, CompanyDto dto) {
+        //获取id
+        int uid = TokenUtil.getUid(token);
+        Company company = new Company(id,uid, dto.getName(), dto.getAddress(), dto.getDecription(), new Date());
+        if (mapper.updateById(company)>0){
+            //记录日志
+            UserLog userLog = new UserLog(uid, new Date(), "update", uid + "修改公司信息");
+            logMapper.insert(userLog);
+            return ResponseResult.ok();
+        }
+        return ResponseResult.fail();
+    }
 }

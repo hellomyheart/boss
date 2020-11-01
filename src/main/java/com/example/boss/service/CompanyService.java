@@ -9,4 +9,7 @@ public interface CompanyService extends IService<Company>{
     //添加公司
     ResponseResult save(String token, CompanyDto dto);
 
+    //修改信息
+    ResponseResult updateInfo(Integer id,String token,CompanyDto dto);
+
 }

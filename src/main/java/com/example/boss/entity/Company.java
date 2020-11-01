@@ -97,4 +97,13 @@ public class Company implements Serializable {
         this.createtime = createtime;
         this.updatetime = updatetime;
     }
+
+    public Company(Integer id, Integer uId, String name, String address, String decription, Date updatetime) {
+        this.id = id;
+        this.uId = uId;
+        this.name = name;
+        this.address = address;
+        this.decription = decription;
+        this.updatetime = updatetime;
+    }
 }
