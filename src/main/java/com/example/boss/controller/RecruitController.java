@@ -20,8 +20,10 @@ public class RecruitController {
     @Autowired
     private RecruitService service;
 
-    /**
-     * 根据条件查询招聘信息
+    /**无条件查询
+     * 职位名称，公司名称，工资，区 查询
+     * bug:根据工资区间查询不可用
+     * 根据条件查找招聘信息
      * @param dto
      * @return
      */
@@ -30,12 +32,5 @@ public class RecruitController {
         return service.selectAllByType(dto);
     }
 
-    /**
-     * 查询所有招聘信息
-     * @return
-     */
-    @GetMapping("selectAll")
-    public ResponseResult selectAll(){
-        return service.selectAll();
-    }
+
 }
