@@ -81,4 +81,9 @@ public class Interview implements Serializable {
     public static final String COL_FLAG = "flag";
 
     public static final String COL_STATUS = "status";
+
+    public Interview(Integer id, Integer flag) {
+        this.id = id;
+        this.flag = flag;
+    }
 }

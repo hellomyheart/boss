@@ -1,35 +1,39 @@
 package com.example.boss.controller;
 
-import com.example.boss.service.ResumeService;
+import com.example.boss.service.InterviewService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 /**
  * @ProjectName: boss
  * @Author: GSL
- * @Time: 2020/10/31 23:38
+ * @Time: 2020/11/1 23:39
  * @Description:
  */
 @RestController
-@RequestMapping("/resume")
-public class ResumeController {
+@RequestMapping("/interview")
+public class InterviewController {
     @Autowired
-    private ResumeService service;
+    private InterviewService service;
 
     /**
-     * 上传简历
-     * @param file
+     * 接受面试
      * @return
-     * @throws IOException
      */
-    @PutMapping("/insert")
-    public ResponseResult insert(MultipartFile file) throws IOException {
-        return service.sendResume(file);
+    @PutMapping("/yes")
+    public ResponseResult ok(){
+        return service.ok();
+    }
+
+    /**
+     * 拒绝面试
+     * @return
+     */
+    @PutMapping("/no")
+    public ResponseResult no(){
+        return service.no();
     }
 }
