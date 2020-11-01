@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
                 //密码加密 AES
                 dto.setPassword(EncryptUtil.aesenc(pk,dto.getPassword()));
                 //新增
-                User u2 = new User(dto.getPhone(), dto.getEmail(), dto.getPassword(), dto.getNickname(), dto.getIcon(), 1, new Date(), new Date());
+                User u2 = new User(dto.getPhone(), dto.getEmail(), dto.getPassword(), dto.getNickname(), dto.getIcon(), 2, new Date(), new Date());
                 if (mapper.insert(u2)>0) {
                     //记录日志
                     UserLog userLog = new UserLog(u2.getId(), new Date(), "add", u2.getNickname() + "完成注册，成为新用户");
