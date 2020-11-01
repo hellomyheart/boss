@@ -50,4 +50,10 @@ public class Applyinfo implements Serializable {
     public static final String COL_SP_ID = "sp_id";
 
     public static final String COL_STATUS = "status";
+
+    public Applyinfo(Integer uId, Integer spId, Integer status) {
+        this.uId = uId;
+        this.spId = spId;
+        this.status = status;
+    }
 }
