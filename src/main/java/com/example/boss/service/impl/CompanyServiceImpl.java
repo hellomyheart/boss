@@ -56,4 +56,17 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
     public ResponseResult queryInfo(int id) {
         return ResponseResult.ok(mapper.selectById(id));
     }
+
+    @Override
+    @Transactional
+    public ResponseResult delete(Integer id, String token) {
+        int uid = TokenUtil.getUid(token);
+        Company company = new Company(id, 2);
+        if (mapper.updateById(company)>0){
+            UserLog userLog = new UserLog(uid, new Date(), "delete", uid + "删除公司");
+            logMapper.insert(userLog);
+            return ResponseResult.ok();
+        }
+        return ResponseResult.fail();
+    }
 }

@@ -15,4 +15,7 @@ public interface CompanyService extends IService<Company>{
     //浏览公司信息
     ResponseResult queryInfo(int id);
 
+    //删除公司
+    ResponseResult delete(Integer id,String token);
+
 }

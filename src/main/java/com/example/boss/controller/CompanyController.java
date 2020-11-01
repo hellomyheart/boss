@@ -5,6 +5,7 @@ import com.example.boss.dto.CompanyDto;
 import com.example.boss.service.CompanyService;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -53,5 +54,16 @@ public class CompanyController {
     @PostMapping("detail")
     public ResponseResult detail(int id){
         return service.queryInfo(id);
+    }
+
+    /**
+     * 删除公司
+     * @param id
+     * @param request
+     * @return
+     */
+    @GetMapping("delete")
+    public ResponseResult delete(Integer id,HttpServletRequest request){
+        return service.delete(id,request.getHeader(SystemConfig.TOKEN_HEADER));
     }
 }

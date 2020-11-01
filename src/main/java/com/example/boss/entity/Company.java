@@ -111,4 +111,9 @@ public class Company implements Serializable {
         this.decription = decription;
         this.updatetime = updatetime;
     }
+
+    public Company(Integer id, Integer status) {
+        this.id = id;
+        this.status = status;
+    }
 }
