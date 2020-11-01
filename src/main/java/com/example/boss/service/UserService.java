@@ -26,5 +26,8 @@ public interface UserService {
 
     //找回密码
     ResponseResult findPwd(String email,String code,String password);
+
+    //修改密码
+    ResponseResult update(String token,String code,String email,String password);
 }
 

@@ -25,4 +25,6 @@ public interface UserMapper extends BaseMapper<User> {
     @Update("update user set password = #{password} where email = #{email} ")
     int findPwd(String email,String password);
 
+    @Update("update user set password = #{password} where id = #{uid} ")
+    int updatePwd(int uid, String password);
 }

@@ -1,5 +1,6 @@
 package com.example.boss.controller;
 
+import com.example.boss.config.SystemConfig;
 import com.example.boss.dto.UserDto;
 import com.example.boss.dto.UserLoginDto;
 import com.example.boss.service.UserService;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @description
@@ -74,5 +77,18 @@ public class UserController {
     @PostMapping("findPassword")
     public ResponseResult findPassword(String email,String code ,String newPassword){
         return service.findPwd(email, code, newPassword);
+    }
+
+    /**
+     * 修改密码
+     * @param request
+     * @param code
+     * @param email
+     * @param password
+     * @return
+     */
+    @GetMapping("updatePwd")
+    public ResponseResult updatePwd(HttpServletRequest request, String code, String email, String password){
+        return service.update(request.getHeader(SystemConfig.TOKEN_HEADER), code, email, password);
     }
 }

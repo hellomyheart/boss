@@ -13,11 +13,11 @@ import com.example.boss.third.JedisUtil;
 import com.example.boss.third.JwtUtil;
 import com.example.boss.util.EncryptUtil;
 import com.example.boss.util.StrUtil;
+import com.example.boss.util.TokenUtil;
 import com.example.boss.vo.ResponseResult;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -134,6 +134,23 @@ public class UserServiceImpl implements UserService {
                     logMapper.insert(userLog);
                     return ResponseResult.ok();
                 }
+            }
+        }
+        return ResponseResult.fail();
+    }
+
+    @Override
+    @Transactional
+    public ResponseResult update(String token, String code, String email, String password) {
+        int uid = TokenUtil.getUid(token);
+        if (code.equals(JedisUtil.getInstance().STRINGS.get(RedisKeyConfig.SMS_RCODE + email))){
+            //密文AES加密
+            String newPassword = EncryptUtil.aesenc(pk,password);
+            if (mapper.updatePwd(uid,newPassword)>0){
+                //记录日志
+                UserLog userLog = new UserLog(uid, new Date(), "update", uid + "修改密码");
+                logMapper.insert(userLog);
+                return ResponseResult.ok();
             }
         }
         return ResponseResult.fail();
