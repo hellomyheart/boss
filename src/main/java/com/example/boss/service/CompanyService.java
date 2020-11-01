@@ -12,4 +12,7 @@ public interface CompanyService extends IService<Company>{
     //修改信息
     ResponseResult updateInfo(Integer id,String token,CompanyDto dto);
 
+    //浏览公司信息
+    ResponseResult queryInfo(int id);
+
 }

@@ -51,4 +51,9 @@ public class CompanyServiceImpl extends ServiceImpl<CompanyMapper, Company> impl
         }
         return ResponseResult.fail();
     }
+
+    @Override
+    public ResponseResult queryInfo(int id) {
+        return ResponseResult.ok(mapper.selectById(id));
+    }
 }

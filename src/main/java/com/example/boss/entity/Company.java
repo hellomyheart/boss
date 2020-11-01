@@ -8,7 +8,10 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
     * 公司表
@@ -16,6 +19,8 @@ import lombok.Data;
 @ApiModel(value="com-example-boss-entity-Company")
 @Data
 @TableName(value = "company")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Company implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     @ApiModelProperty(value="")

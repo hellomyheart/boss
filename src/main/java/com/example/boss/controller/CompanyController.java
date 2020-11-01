@@ -44,4 +44,14 @@ public class CompanyController {
     public ResponseResult update(Integer id,HttpServletRequest request,CompanyDto dto){
         return service.updateInfo(id,request.getHeader(SystemConfig.TOKEN_HEADER),dto);
     }
+
+    /**
+     * 浏览公司信息
+     * @param id
+     * @return
+     */
+    @PostMapping("detail")
+    public ResponseResult detail(int id){
+        return service.queryInfo(id);
+    }
 }
