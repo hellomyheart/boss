@@ -25,30 +25,30 @@ public class ResumeServiceImpl extends ServiceImpl<ResumeMapper, Resume> impleme
     @Override
     public ResponseResult sendResume(MultipartFile file) throws IOException {
         //是否为空
-        if (file.isEmpty()) {
+        if (!file.isEmpty()) {
             //获取文件名
             String filename = file.getOriginalFilename();
             //上传文件
             String s = AliOssUtil.uploadByte(AliOssUtil.BucketName, filename, file.getBytes());
             //访问路径
             String url = AliOssUtil.getUrl(AliOssUtil.BucketName, filename);
-            //判断是否为空
-            if (StrUtil.checkNoEmpty(s)) {
-                //插入数据库
-                if (dao.inserta(url)>0) {
-                    return ResponseResult.ok();
-                }
-            }
+            System.out.println("url = " + url);
+            //将地址插入数据库
+            dao.inserta(url);
+            return ResponseResult.ok();
         }
         return ResponseResult.fail();
     }
-    //文件名的处理
+    //文件名处理
     private String rename(String f){
-        //长度大于五十
-        if(f.length()>50){
-            f=f.substring(f.length()-50);
+        //长度
+        if (f.length()>50) {
+            //从前往后第f.length() - 50位开始截取
+            f = f.substring(f.length() - 50);
         }
         //重命名
+        //UUID.randomUUID()获取随机32位字符串
+        //replaceAll去除
         return UUID.randomUUID().toString().replaceAll("-","")+"_"+f;
     }
 }
