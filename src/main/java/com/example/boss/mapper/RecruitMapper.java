@@ -16,5 +16,5 @@ public interface RecruitMapper extends BaseMapper<Recruit> {
     List<FindResultDto> findByType(FindByType fbt);
 
 
-    List<FindResultDto> selectAllList();
+
 }

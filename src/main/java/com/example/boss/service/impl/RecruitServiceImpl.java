@@ -28,12 +28,5 @@ public class RecruitServiceImpl extends ServiceImpl<RecruitMapper, Recruit> impl
         return ResponseResult.fail();
     }
 
-    @Override
-    public ResponseResult selectAll() {
-        List<FindResultDto> list = dao.selectAllList();
-        if (list!=null) {
-            return ResponseResult.ok(list);
-        }
-        return ResponseResult.fail();
-    }
+
 }

@@ -70,18 +70,5 @@
 
 
   </select>
-  <select id="selectAllList" resultMap="ResultMap">
-        SELECT
 
-    p.`name` p_name, p.decription, p.skill ,
-    c.`name` c_name,
-    r.num , r.address,r.createtime,r.salary
-
-    from
-
-    company c
-
-    INNER JOIN  position p  on c.id=p.c_id
-    INNER JOIN  recruit r   on r.p_id=p.id
-  </select>
 </mapper>

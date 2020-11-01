@@ -14,10 +14,6 @@ public interface RecruitService extends IService<Recruit>{
      */
     ResponseResult selectAllByType(FindByType dto);
 
-    /**
-     * 查询所有招聘信息
-     * @return
-     */
-    ResponseResult selectAll();
+
 
 }
