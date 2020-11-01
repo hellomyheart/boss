@@ -52,7 +52,12 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-
+        <!--   邮箱  -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
         <!--        mybatis-plus 依赖-->
         <dependency>
             <groupId>com.baomidou</groupId>
