@@ -23,5 +23,8 @@ public interface UserService {
 
     //登录
     ResponseResult login(UserLoginDto dto);
+
+    //找回密码
+    ResponseResult findPwd(String email,String code,String password);
 }
 

@@ -63,4 +63,16 @@ public class UserController {
     public ResponseResult login(UserLoginDto dto){
         return service.login(dto);
     }
+
+    /**
+     * 找回密码
+     * @param email
+     * @param code
+     * @param newPassword
+     * @return
+     */
+    @PostMapping("findPassword")
+    public ResponseResult findPassword(String email,String code ,String newPassword){
+        return service.findPwd(email, code, newPassword);
+    }
 }

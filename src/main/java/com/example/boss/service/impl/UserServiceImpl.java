@@ -17,6 +17,7 @@ import com.example.boss.vo.ResponseResult;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -113,6 +114,26 @@ public class UserServiceImpl implements UserService {
                 logMapper.insert(userLog);
                 //返回结果
                 return ResponseResult.ok(token);
+            }
+        }
+        return ResponseResult.fail();
+    }
+
+    @Override
+    @Transactional
+    public ResponseResult findPwd(String email, String code, String password) {
+        User user = mapper.selectByEmail(email);
+        if (user != null) {
+            //验证码比对
+            if (code.equals(JedisUtil.getInstance().STRINGS.get(RedisKeyConfig.SMS_RCODE + email))){
+                //密文加密
+                String newPassword = EncryptUtil.aesenc(pk, password);
+                if (mapper.findPwd(email,newPassword)>0){
+                    //记录日志
+                    UserLog userLog = new UserLog(user.getId(), new Date(), "update", user.getNickname() + "找回密码");
+                    logMapper.insert(userLog);
+                    return ResponseResult.ok();
+                }
             }
         }
         return ResponseResult.fail();

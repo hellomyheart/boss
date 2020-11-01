@@ -5,6 +5,7 @@ import com.example.boss.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.ResultType;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 public interface UserMapper extends BaseMapper<User> {
 
@@ -16,4 +17,12 @@ public interface UserMapper extends BaseMapper<User> {
     @Select("select * from user where phone =#{n}")
     @ResultType(User.class)
     User selectByPhone(String n);
+
+    @Select("select * from user where email = #{email}")
+    @ResultType(User.class)
+    User selectByEmail(String email);
+
+    @Update("update user set password = #{password} where email = #{email} ")
+    int findPwd(String email,String password);
+
 }
