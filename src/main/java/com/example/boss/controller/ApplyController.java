@@ -21,6 +21,12 @@ public class ApplyController {
     @Autowired
     private ApplyinfoService service;
 
+    /**
+     * 求职者注册
+     * @param userDto
+     * @param dto
+     * @return
+     */
     @PostMapping("register")
     public ResponseResult register(UserDto userDto, ApplyInfoDto dto){
         return service.register(userDto, dto);

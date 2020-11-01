@@ -87,4 +87,14 @@ public class Company implements Serializable {
     public static final String COL_CREATETIME = "createtime";
 
     public static final String COL_UPDATETIME = "updatetime";
+
+    public Company(Integer uId, String name, String address, String decription, Integer status, Date createtime, Date updatetime) {
+        this.uId = uId;
+        this.name = name;
+        this.address = address;
+        this.decription = decription;
+        this.status = status;
+        this.createtime = createtime;
+        this.updatetime = updatetime;
+    }
 }
