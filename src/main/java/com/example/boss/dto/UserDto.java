@@ -3,6 +3,7 @@ package com.example.boss.dto;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * @description
@@ -14,4 +15,11 @@ import java.io.Serializable;
 @Data
 public class UserDto implements Serializable {
     private static final long serialVersionUID = 1040871397516296025L;
+
+    private String phone;
+    private String email;
+    private String password;
+    private String msgCode;
+    private String nickname;
+    private String icon;
 }

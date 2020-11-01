@@ -1,13 +1,23 @@
 package com.example.boss.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.example.boss.config.RedisKeyConfig;
+import com.example.boss.dto.UserDto;
 import com.example.boss.entity.User;
+import com.example.boss.entity.UserLog;
+import com.example.boss.mapper.UserLogMapper;
 import com.example.boss.mapper.UserMapper;
 import com.example.boss.service.UserService;
+import com.example.boss.third.JedisUtil;
+import com.example.boss.util.EncryptUtil;
 import com.example.boss.util.StrUtil;
 import com.example.boss.vo.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
 
 /**
  * @description
@@ -20,6 +30,11 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper mapper;
+    @Autowired
+    private UserLogMapper logMapper;
+
+    @Value("${boss.passkey}")
+    private String pk;
 
     @Override
     public ResponseResult checkPhone(String phone) {
@@ -48,6 +63,29 @@ public class UserServiceImpl implements UserService {
             }else{
                 //不存在-昵称可用
                 return ResponseResult.ok();
+            }
+        }
+        return ResponseResult.fail();
+    }
+
+    @Override
+    @Transactional
+    public ResponseResult register(UserDto dto) {
+        //校验是否可用
+        User user = mapper.selectByNamePhone(dto.getNickname(), dto.getPhone());
+        if (user == null) {
+            //验证码比对
+            if (dto.getMsgCode().equals(JedisUtil.getInstance().STRINGS.get(RedisKeyConfig.SMS_RCODE + dto.getPhone()))){
+                //密码加密 AES
+                dto.setPassword(EncryptUtil.aesenc(pk,dto.getPassword()));
+                //新增
+                User u2 = new User(dto.getPhone(), dto.getEmail(), dto.getPassword(), dto.getNickname(), dto.getIcon(), 1, new Date(), new Date());
+                if (mapper.insert(u2)>0) {
+                    //记录日志
+                    UserLog userLog = new UserLog(u2.getId(), new Date(), "add", u2.getNickname() + "完成注册，成为新用户");
+                    logMapper.insert(userLog);
+                    return ResponseResult.ok();
+                }
             }
         }
         return ResponseResult.fail();

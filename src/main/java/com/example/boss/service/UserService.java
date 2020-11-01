@@ -1,5 +1,6 @@
 package com.example.boss.service;
 
+import com.example.boss.dto.UserDto;
 import com.example.boss.vo.ResponseResult;
 
 /**
@@ -15,5 +16,8 @@ public interface UserService {
 
     //检查昵称是否可用
     ResponseResult checkNickName(String nickname);
+
+    //注册
+    ResponseResult register(UserDto dto);
 }
 

@@ -54,4 +54,11 @@ public class UserLog implements Serializable {
     public static final String COL_TYPE = "type";
 
     public static final String COL_DECRIPTION = "decription";
+
+    public UserLog(Integer uId, Date createtime, String type, String decription) {
+        this.uId = uId;
+        this.createtime = createtime;
+        this.type = type;
+        this.decription = decription;
+    }
 }

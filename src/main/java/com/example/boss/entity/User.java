@@ -96,4 +96,15 @@ public class User implements Serializable {
     public static final String COL_CREATETIME = "createtime";
 
     public static final String COL_UPDATETIME = "updatetime";
+
+    public User(String phone, String email, String password, String nickname, String icon, Integer status, Date createtime, Date updatetime) {
+        this.phone = phone;
+        this.email = email;
+        this.password = password;
+        this.nickname = nickname;
+        this.icon = icon;
+        this.status = status;
+        this.createtime = createtime;
+        this.updatetime = updatetime;
+    }
 }
